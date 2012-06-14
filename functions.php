@@ -24,6 +24,10 @@ $args = array(
 
 register_sidebar($args);
 
+add_theme_support( 'post-thumbnails' );
+add_image_size('featured-big', 700, 450, true);
+add_image_size('featured-small', 140, 90, true);
+
 function _slim_comment($comment, $args, $depth)
 {
 	$GLOBALS['comment'] = $comment;
