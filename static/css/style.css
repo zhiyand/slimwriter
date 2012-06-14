@@ -38,6 +38,8 @@ pre{
 	background:#f5f5f5;
 	overflow:auto;
 }
+address,
+kbd, tt,
 code{
 	font-family:monospace;
 	background:#f5f5f5;
@@ -121,6 +123,23 @@ th{
 	font-weight:700;
 	background:#f1f1f1;
 }
+
+abbr, acronym{
+	border-bottom:1px dashed #aaa;
+	cursor:help;
+}
+sup, sub{
+	font-size:.8em;
+}
+sup{ vertical-align:super; }
+sub{ vertical-align:sub; }
+
+em, q, cite{ font-style: italic; }
+
+ins{ background:#f5f5f5; }
+
+s{ text-decoration:line-through; }
+
 header{
 	background:#4e4e4e url(../pattern/body-bg9.png) repeat;
 	text-align:center;
@@ -155,7 +174,11 @@ article img{
 	-webkit-border-radius: 5px;
 	border-radius:5px;
 }
+article section{
+	padding-bottom:1em;
+}
 aside{
+	clear:both;
 	padding:1em 1.5em;
 	background:#f5f5f5;
 	-moz-box-shadow:    inset 0 -1px 10px #ccc;
@@ -183,6 +206,7 @@ footer{
 }
 
 nav.pager{
+	height:2.5em;
 }
 nav.pager .wp-pagenavi,
 nav.pager ul{
@@ -192,11 +216,17 @@ nav.pager ul{
 	text-indent:0;
 	height:2.5em;
 }
+nav.pager .nav-prev,
 nav.pager .wp-pagenavi span,
 nav.pager .wp-pagenavi a,
 nav.pager ul li{
 	float:left;
 }
+nav.pager .nav-next{
+	float:right;
+}
+nav.pager .nav-next a,
+nav.pager .nav-prev a,
 nav.pager .wp-pagenavi span,
 nav.pager .wp-pagenavi a,
 nav.pager ul li a{
@@ -204,6 +234,8 @@ nav.pager ul li a{
 	line-height:2.5em;
 	padding:0 .9em;
 }
+nav.pager .nav-next a:hover,
+nav.pager .nav-prev a:hover,
 nav.pager .wp-pagenavi span.current,
 nav.pager ul li.active a,
 nav.pager ul li a:hover{
@@ -264,9 +296,17 @@ nav.pager ul li a:hover{
 	margin:55px auto 1.5em;
 }
 
+p.meta,
 aside.article-meta{
 	color:#666;
 	font-size:.75em;
+}
+p.meta{
+	padding:.3em 0;
+}
+aside.article-meta .avatar{
+	float:right;
+	margin:0 0 10px 10px;
 }
 
 article .featured{
@@ -279,6 +319,29 @@ article .featured{
 	-moz-border-radius:5px;
 	-webkit-border-radius:5px;
 	border-radius:5px;
+}
+
+article img{
+	display:block;
+}
+
+.aligncenter{
+	margin:0 auto;
+}
+.alignleft{
+	float:left;
+	margin:0 10px 10px 0;
+}
+.alignright{
+	margin:0 0 10px 10px;
+	float:right;}
+
+.gallery-item img{
+	margin:0 auto;
+}
+
+.page-link{
+	clear:both;
 }
 
 #comments{

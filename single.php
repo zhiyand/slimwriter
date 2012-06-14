@@ -5,22 +5,25 @@
 <header>
 	<h1><?php the_title();?></h1>
 </header>
-<aside class="article-meta">
-	<p>Author : <?php the_author_link();?>, Published at : <?php the_date();?>, <?php  the_time();?></p>
-	<p>Categories : <?php the_category(', ');?></p>
-	<p><?php the_tags();?></p>
-</aside>
 <article>
 	<?php the_content();?>
+	<?php wp_link_pages( array( 'before' => '<div class="page-link"><span>' . __( 'Pages:', 'slimcoder' ) . '</span>', 'after' => '</div>' ) ); ?>
 </article>
+<aside class="article-meta">
+	<div class="avatar"><?php echo get_avatar( get_the_author_meta('user_email'), 48); ?></div>
+	<p><span class="icon-user"> Author</span> : <?php the_author_link();?>, <span class="icon-calendar"> Published at</span> : <?php the_date();?>, <?php  the_time();?></p>
+	<p><span class="icon-tag"> Categories</span> : <?php the_category(', ');?></p>
+	<p><?php the_tags("<span class='icon-tag'> Tags</span> : ");?></p>
+	<div class="clear"></div>
+</aside>
 
 <?php endwhile; else:?>
 
 <h4>The content you're looking for does not exist.</h4>
 
 <?php endif;?>
-<?php get_sidebar();?>
-
 <?php comments_template();?>
+
+<?php get_sidebar();?>
 
 <?php get_footer();?>
