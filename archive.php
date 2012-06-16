@@ -5,17 +5,17 @@
 				<header>
 					<h1>
 						<?php if ( is_day() ) : ?>
-							<?php printf( __( 'Daily Archives: %s', 'twentyeleven' ), '<span>' . get_the_date() . '</span>' ); ?>
+							<?php printf( __( 'Daily Archives: %s', 'slimwriter' ), '<span>' . get_the_date() . '</span>' ); ?>
 						<?php elseif ( is_month() ) : ?>
-							<?php printf( __( 'Monthly Archives: %s', 'twentyeleven' ), '<span>' . get_the_date( _x( 'F Y', 'monthly archives date format', 'twentyeleven' ) ) . '</span>' ); ?>
+							<?php printf( __( 'Monthly Archives: %s', 'slimwriter' ), '<span>' . get_the_date( _x( 'F Y', 'monthly archives date format', 'slimwriter' ) ) . '</span>' ); ?>
 						<?php elseif ( is_year() ) : ?>
-							<?php printf( __( 'Yearly Archives: %s', 'twentyeleven' ), '<span>' . get_the_date( _x( 'Y', 'yearly archives date format', 'twentyeleven' ) ) . '</span>' ); ?>
+							<?php printf( __( 'Yearly Archives: %s', 'slimwriter' ), '<span>' . get_the_date( _x( 'Y', 'yearly archives date format', 'slimwriter' ) ) . '</span>' ); ?>
 						<?php elseif( is_category() ) :?>
-							<?php _e( 'Category - '. single_cat_title('', false ) , 'twentyeleven' ); ?>
+							<?php _e( 'Category - '. single_cat_title('', false ) , 'slimwriter' ); ?>
 						<?php elseif( is_tag() ) :?>
-							<?php _e( 'Tag - '. single_cat_title('', false ) , 'twentyeleven' ); ?>
+							<?php _e( 'Tag - '. single_cat_title('', false ) , 'slimwriter' ); ?>
 						<?php else : ?>
-							<?php _e( 'Blog Archives', 'twentyeleven' ); ?>
+							<?php _e( 'Blog Archives', 'slimwriter' ); ?>
 						<?php endif; ?>
 					</h1>
 				</header>
@@ -31,11 +31,11 @@
 			<?php else : ?>
 
 					<header class="entry-header">
-						<h1 class="entry-title"><?php _e( 'Nothing Found', 'twentyeleven' ); ?></h1>
+						<h1 class="entry-title"><?php _e( 'Nothing Found', 'slimwriter' ); ?></h1>
 					</header><!-- .entry-header -->
 				<article>
 
-						<p><?php _e( 'Apologies, but no results were found for the requested archive. Perhaps searching will help find a related post.', 'twentyeleven' ); ?></p>
+						<p><?php _e( 'Apologies, but no results were found for the requested archive. Perhaps searching will help find a related post.', 'slimwriter' ); ?></p>
 						<?php get_search_form(); ?>
 				</article><!-- #post-0 -->
 

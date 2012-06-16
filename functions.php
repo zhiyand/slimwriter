@@ -33,6 +33,8 @@ add_theme_support( 'automatic-feed-links' );
 add_image_size('-slim-featured-big', 700, 450, true);
 add_image_size('-slim-featured-small', 140, 90, true);
 
+if(!isset($content_width)) $content_width = '700';
+
 function _slim_enqueue()
 {
 	$theme_url = get_template_directory_uri(); //get_bloginfo('template_url');
