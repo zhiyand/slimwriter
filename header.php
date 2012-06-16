@@ -1,27 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html <?php language_attributes(); ?>>
 <head>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 	<title><?php wp_title('&laquo;', true, 'right'); bloginfo('name'); ?></title>
-	<?php $theme_url = get_bloginfo('template_url');?>
-
-	<link href='http://fonts.googleapis.com/css?family=Bilbo|Tienne:400,700,900' rel='stylesheet' type='text/css' />
-	<link href="<?php echo $theme_url;?>/static/css/reset.css" rel="stylesheet" type="text/css" />
-	<link href="<?php echo $theme_url;?>/static/css/style.css" rel="stylesheet" type="text/css" />
-	<link href="<?php echo $theme_url;?>/static/css/icon-font/style.css" rel="stylesheet" type="text/css" />
+	<?php $theme_url = get_template_directory_uri(); ?>
 
 	<!--[if lt IE 9]>
 	<script src="<?php echo $theme_url;?>/static/js/html5shiv.js"></script>
-	<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+	<script src="<?php echo $theme_url;?>/css3-mediaqueries.js"></script>
 
 	<style type="text/css">
 		.comment-form small{ visibility:visible; }
 	</style>
 
 	<![endif]-->
-	<?php wp_head();?>
+	<?php
+		if ( is_singular() ) wp_enqueue_script( 'comment-reply' );
+		wp_head();
+	?>
 </head>
 <body <?php body_class();?>>
 	<div id="wrap">

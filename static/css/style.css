@@ -280,6 +280,7 @@ nav.pager ul li a:hover{
 	color:#fff;
 }
 #nav nav ul li a:visited{ color: #eee; }
+#nav nav ul li.current-menu-item a,
 #nav nav ul li a:hover{ color: #000; background:#fff; }
 #nav nav ul li a:active{ color: #f5f5f5; }
 

@@ -1,5 +1,8 @@
 <?php
 
+/* Menu */
+register_nav_menu( 'primary', 'Primary navigation on the top of the page' );
+
 /* Sidebar */
 
 $args = array(
@@ -25,8 +28,25 @@ $args = array(
 register_sidebar($args);
 
 add_theme_support( 'post-thumbnails' );
-add_image_size('featured-big', 700, 450, true);
-add_image_size('featured-small', 140, 90, true);
+add_theme_support( 'automatic-feed-links' );
+
+add_image_size('-slim-featured-big', 700, 450, true);
+add_image_size('-slim-featured-small', 140, 90, true);
+
+function _slim_enqueue()
+{
+	$theme_url = get_template_directory_uri(); //get_bloginfo('template_url');
+	wp_register_style('-slim-reset', $theme_url . '/static/css/reset.css');
+	wp_register_style('-slim-style', $theme_url . '/static/css/style.css');
+	wp_register_style('-slim-icon-font', $theme_url . '/static/css/icon-font/style.css');
+	wp_register_style('-slim-fonts', 'http://fonts.googleapis.com/css?family=Bilbo|Tienne:400,700,900');
+
+
+	wp_enqueue_style('-slim-fonts');
+	wp_enqueue_style('-slim-reset');
+	wp_enqueue_style('-slim-style');
+	wp_enqueue_style('-slim-icon-font');
+}
 
 function _slim_comment($comment, $args, $depth)
 {
@@ -36,7 +56,7 @@ function _slim_comment($comment, $args, $depth)
 		case 'trackback' :
 	?>
 	<li class="post pingback">
-		<p><?php _e( 'Pingback:', 'twentyeleven' ); ?> <?php comment_author_link(); ?><?php edit_comment_link( __( 'Edit', 'twentyeleven' ), '<span class="edit-link">', '</span>' ); ?></p>
+		<p><?php _e( 'Pingback:', 'slimwriter' ); ?> <?php comment_author_link(); ?><?php edit_comment_link( __( 'Edit', 'slimwriter' ), '<span class="edit-link">', '</span>' ); ?></p>
 	<?php
 			break;
 		default :
@@ -47,7 +67,7 @@ function _slim_comment($comment, $args, $depth)
 			<div class="text">
 
 					<?php if ( $comment->comment_approved == '0' ) : ?>
-						<em class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.', 'twentyeleven' ); ?></em>
+						<em class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.', 'slimwriter' ); ?></em>
 						<br />
 					<?php endif; ?>
 					<?php comment_text(); ?>
@@ -56,17 +76,17 @@ function _slim_comment($comment, $args, $depth)
 			<div class="date">
 				<?php
 					/* translators: 1: comment author, 2: date and time */
-					printf( __( '%1$s on %2$s ', 'twentyeleven' ),
+					printf( __( '%1$s on %2$s ', 'slimwriter' ),
 						sprintf( '<span class="fn">%s</span>', get_comment_author_link() ),
 						sprintf( '<a href="%1$s"><time pubdate datetime="%2$s">%3$s</time></a>',
 							esc_url( get_comment_link( $comment->comment_ID ) ),
 							get_comment_time( 'c' ),
 							/* translators: 1: date, 2: time */
-							sprintf( __( '%1$s at %2$s', 'twentyeleven' ), get_comment_date(), get_comment_time() )
+							sprintf( __( '%1$s at %2$s', 'slimwriter' ), get_comment_date(), get_comment_time() )
 						)
 					);
 				?>
-					, <?php comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Reply', 'twentyeleven' ), 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
+					, <?php comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Reply', 'slimwriter' ), 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
 			</div>
 			<div class="clear"></div>
 		</article><!-- #comment-## -->
@@ -88,5 +108,7 @@ function _slim_comment_fields($fields)
 
 add_filter('comment_form_default_fields','_slim_comment_fields');
 add_filter('show_admin_bar', '__return_false');
+add_action('wp_enqueue_scripts', '_slim_enqueue');
+
 if ( !is_admin() ) wp_deregister_script('jquery');
 ?>

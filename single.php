@@ -1,7 +1,7 @@
 <?php get_header();?>
 
 <?php if(have_posts()) : while(have_posts()) : the_post();
-$nail = get_the_post_thumbnail( get_the_ID(),  'featured-big');
+$nail = get_the_post_thumbnail( get_the_ID(),  '-slim-featured-big');
 ?>
 
 <header>

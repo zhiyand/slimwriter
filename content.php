@@ -1,7 +1,7 @@
 <div <?php post_class();?>>
 <?php
 $title = get_the_title(); $title = trim($title) == '' ? '(No Title)' : $title;
-$nail = get_the_post_thumbnail( get_the_ID(),  'featured-big');
+$nail = get_the_post_thumbnail( get_the_ID(),  '-slim-featured-big');
 ?>
 <h2><a href="<?php the_permalink();?>"><?php echo $title;?></a></h2>
 
