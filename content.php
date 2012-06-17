@@ -1,6 +1,6 @@
 <div <?php post_class();?>>
 <?php
-$nail = get_the_post_thumbnail( get_the_ID(),  '-slim-featured-big');
+$nail = get_the_post_thumbnail( get_the_ID(),  '-slimwriter-featured-big');
 ?>
 <h2><a href="<?php the_permalink();?>"><?php the_title();?></a></h2>
 
