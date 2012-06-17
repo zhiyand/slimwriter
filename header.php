@@ -7,15 +7,6 @@
 	<title><?php wp_title('&laquo;', true, 'right'); bloginfo('name'); ?></title>
 	<?php $theme_url = get_template_directory_uri(); ?>
 
-	<!--[if lt IE 9]>
-	<script src="<?php echo $theme_url;?>/static/js/html5shiv.js"></script>
-	<script src="<?php echo $theme_url;?>/css3-mediaqueries.js"></script>
-
-	<style type="text/css">
-		.comment-form small{ visibility:visible; }
-	</style>
-
-	<![endif]-->
 	<?php
 		if ( is_singular() ) wp_enqueue_script( 'comment-reply' );
 		wp_head();

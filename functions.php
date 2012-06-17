@@ -1,5 +1,7 @@
 <?php
 
+include( get_template_directory() . '/lib/agent.php' );
+
 /* Menu */
 register_nav_menu( 'primary', 'Primary navigation on the top of the page' );
 
@@ -30,27 +32,46 @@ register_sidebar($args);
 add_theme_support( 'post-thumbnails' );
 add_theme_support( 'automatic-feed-links' );
 
-add_image_size('-slim-featured-big', 700, 450, true);
-add_image_size('-slim-featured-small', 140, 90, true);
+add_image_size('-slimwriter-featured-big', 700, 450, true);
+add_image_size('-slimwriter-featured-small', 140, 90, true);
 
 if(!isset($content_width)) $content_width = '700';
 
-function _slim_enqueue()
-{
-	$theme_url = get_template_directory_uri(); //get_bloginfo('template_url');
-	wp_register_style('-slim-reset', $theme_url . '/static/css/reset.css');
-	wp_register_style('-slim-style', $theme_url . '/static/css/style.css');
-	wp_register_style('-slim-icon-font', $theme_url . '/static/css/icon-font/style.css');
-	wp_register_style('-slim-fonts', 'http://fonts.googleapis.com/css?family=Bilbo|Tienne:400,700,900');
-
-
-	wp_enqueue_style('-slim-fonts');
-	wp_enqueue_style('-slim-reset');
-	wp_enqueue_style('-slim-style');
-	wp_enqueue_style('-slim-icon-font');
+function _slimwriter_title_filter($title){
+	if(trim($title) == ''){
+		return '(No Title)';
+	}
+	return $title;
 }
 
-function _slim_comment($comment, $args, $depth)
+function _slimwriter_enqueue()
+{
+	$theme_url = get_template_directory_uri(); //get_bloginfo('template_url');
+	wp_register_style('-slimwriter-reset', $theme_url . '/static/css/reset.css');
+	wp_register_style('-slimwriter-style', $theme_url . '/static/css/style.css');
+	wp_register_style('-slimwriter-icon-font', $theme_url . '/static/css/icon-font/style.css');
+	wp_register_style('-slimwriter-fonts', 'http://fonts.googleapis.com/css?family=Bilbo|Tienne:400,700,900');
+
+
+	wp_enqueue_style('-slimwriter-fonts');
+	wp_enqueue_style('-slimwriter-reset');
+	wp_enqueue_style('-slimwriter-style');
+	wp_enqueue_style('-slimwriter-icon-font');
+
+	$browser = _slimwriter_parseUserAgent($_SERVER['HTTP_USER_AGENT']);
+
+	if($browser[0] == 'MSIE' && $browser[1] < 9){
+		wp_register_style('-slimwriter-lt-ie9', $theme_url . '/static/css/lt-ie9.css');
+		wp_enqueue_style('-slimwriter-lt-ie9');
+
+		wp_register_script('-slimwriter-lt-ie9-html5', $theme_url . '/static/js/html5shiv.js');
+		wp_register_script('-slimwriter-lt-ie9-css3', $theme_url . '/static/js/css3-mediaqueries.js');
+		wp_enqueue_script('-slimwriter-lt-ie9-html5');
+		wp_enqueue_script('-slimwriter-lt-ie9-css3');
+	}
+}
+
+function _slimwriter_comment($comment, $args, $depth)
 {
 	$GLOBALS['comment'] = $comment;
 	switch ( $comment->comment_type ) :
@@ -97,7 +118,7 @@ function _slim_comment($comment, $args, $depth)
 			break;
 	endswitch;
 }
-function _slim_comment_fields($fields)
+function _slimwriter_comment_fields($fields)
 {
 	$fields = array(
 		'<p class="field"><input placeholder="Name" id="author" name="author" type="text" value="" size="30" aria-required="true" /><span class="required">*</span><small>Name</small></p>',
@@ -108,9 +129,8 @@ function _slim_comment_fields($fields)
 	return $fields;
 }
 
-add_filter('comment_form_default_fields','_slim_comment_fields');
-add_filter('show_admin_bar', '__return_false');
-add_action('wp_enqueue_scripts', '_slim_enqueue');
+add_filter('comment_form_default_fields','_slimwriter_comment_fields');
+add_filter('the_title', '_slimwriter_title_filter');
+add_action('wp_enqueue_scripts', '_slimwriter_enqueue');
 
-if ( !is_admin() ) wp_deregister_script('jquery');
 ?>
