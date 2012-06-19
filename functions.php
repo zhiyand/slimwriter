@@ -52,7 +52,6 @@ function _slimwriter_enqueue()
 	wp_register_style('-slimwriter-icon-font', $theme_url . '/static/css/icon-font/style.css');
 	wp_register_style('-slimwriter-fonts', 'http://fonts.googleapis.com/css?family=Bilbo|Tienne:400,700,900');
 
-
 	wp_enqueue_style('-slimwriter-fonts');
 	wp_enqueue_style('-slimwriter-reset');
 	wp_enqueue_style('-slimwriter-style');
@@ -68,6 +67,11 @@ function _slimwriter_enqueue()
 		wp_register_script('-slimwriter-lt-ie9-css3', $theme_url . '/static/js/css3-mediaqueries.js');
 		wp_enqueue_script('-slimwriter-lt-ie9-html5');
 		wp_enqueue_script('-slimwriter-lt-ie9-css3');
+	}
+
+	if ( is_admin_bar_showing() ){
+		wp_register_style('-slimwriter-admin-bar', $theme_url . '/static/css/admin-bar.css');
+		wp_enqueue_style('-slimwriter-admin-bar');
 	}
 }
 
