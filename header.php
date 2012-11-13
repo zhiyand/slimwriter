@@ -5,7 +5,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 	<title><?php wp_title('&laquo;', true, 'right'); bloginfo('name'); ?></title>
-	<?php $theme_url = get_template_directory_uri(); ?>
+<?php
+$setting = get_option('_slimwriter_');
+$theme_url = get_template_directory_uri();
+?>
 
 	<?php
 		if ( is_singular() ) wp_enqueue_script( 'comment-reply' );
@@ -15,14 +18,14 @@
 <body <?php body_class();?>>
 	<div id="wrap">
 		<div id="nav"><nav>
-			<a id="logo" href="<?php echo home_url();?>"><img src="<?php echo $theme_url;?>/static/images/logo.png" /></a>
+			<a id="logo" href="<?php echo home_url();?>"><img src="<?php echo esc_url($setting['logo']) ?>" /></a>
 <?php
 $primary_menu = array(
 'theme_location'  => 'primary',
 'container'       => false, //'ul', 
 'container_class' => 'menu-{menu slug}-container', 
 'menu_class'      => 'menu', 
-'items_wrap'      => '<ul id=\"%1$s\" class=\"%2$s\">%3$s</ul>',
+'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
 'depth'           => 0,
 'fallback_cb' => ''
 );

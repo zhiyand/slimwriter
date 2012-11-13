@@ -264,6 +264,9 @@ nav.pager ul li a:hover{
 	text-indent:0;
 	position:absolute;
 	right:0;top:0;
+	max-width:500px;
+	height:45px;
+	overflow:hidden;
 }
 #nav nav ul li{
 	float:right;
