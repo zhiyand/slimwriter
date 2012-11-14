@@ -33,6 +33,7 @@ if(!isset($content_width)) $content_width = '700';
 
 class SlimWriterTheme{
 
+
 	function __construct(){
 		add_theme_support( 'post-thumbnails' );
 		add_theme_support( 'automatic-feed-links' );
@@ -42,7 +43,7 @@ class SlimWriterTheme{
 
 		add_filter('comment_form_default_fields', array( &$this, 'comment_fields') );
 		add_filter('the_title', array(&$this, 'title_filter'));
-		add_filter('wp_title', array(&$this, 'wp_title_filter'));
+		add_filter('wp_title', array(&$this, 'wp_title_filter'), 10, 3);
 		add_filter('embed_defaults', array(&$this, 'embed_defaults'));
 
 		add_action('wp_enqueue_scripts', array(&$this, 'enqueue'));
@@ -60,14 +61,34 @@ class SlimWriterTheme{
 		}
 		return $title;
 	}
-	function wp_title_filter($title, $sep, $position){
+	function wp_title_filter($title, $sep = '', $position = ''){
 		if(trim($title) == ''){
 			$title = '(No Title)';
 		}
 
-		$title .= '&raquo; '. get_bloginfo('name');
+		if( is_category() ) $type = 'Category';
+		elseif( is_tag() ) $type = 'Tag';
+		elseif( is_author() ) $type . 'Author';
+		elseif( is_date() || is_archive() ) $type = 'Archives';
+		else $type = false;
 
-		return $title;
+		if( get_query_var( 'paged' ) ) {
+			$page_num = 'Page ' . get_query_var( 'paged' ); // on index
+		}elseif( get_query_var( 'page' ) ) {
+			$page_num = 'Page ' . get_query_var( 'page' ); // on single
+		}else { $page_num = false; }
+
+		$title = trim( str_replace( $sep, '', $title ) );
+
+		if( $position == 'right' ){
+			$parts = array( $title, $page_num, $type, get_bloginfo( 'name' ) );
+		}else{
+			$parts = array( get_bloginfo( 'name' ), $type, $title, $page_num );
+		}
+
+		$parts = array_filter( $parts );
+
+		return implode( ' ' . $sep . ' ', $parts );
 	}
 
 	function enqueue()

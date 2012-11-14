@@ -4,10 +4,12 @@
 	<meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-	<title><?php wp_title(); ?></title>
+	<title><?php wp_title(' &laquo; ', true, 'right'); ?></title>
 <?php
 $setting = get_option('_slimwriter_');
 $theme_url = get_template_directory_uri();
+
+$setting['logo'] = $setting['logo'] ? $setting['logo'] : ($theme_url . '/static/images/logo.png');
 ?>
 
 	<?php
