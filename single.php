@@ -26,8 +26,8 @@ $nail = get_the_post_thumbnail( get_the_ID(),  '-slimwriter-featured-big');
 </aside>
 <nav class="pager">
 
-	<div class="nav-prev"><?php next_post_link( '%link', __( '<span class="meta-nav">&laquo;</span> Previous Post', 'twentyten' ) ); ?></div>
-	<div class="nav-next"><?php previous_post_link( '%link', __( 'Next Post <span class="meta-nav">&raquo;</span>', 'twentyten' ) ); ?></div>
+	<div class="nav-prev"><?php next_post_link( '%link', __( '<span class="meta-nav">&laquo;</span> Previous Post', 'slimwriter' ) ); ?></div>
+	<div class="nav-next"><?php previous_post_link( '%link', __( 'Next Post <span class="meta-nav">&raquo;</span>', 'slimwriter' ) ); ?></div>
 </nav>
 
 <?php endwhile; else:?>

@@ -4,7 +4,7 @@
 	<meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-	<title><?php wp_title('&laquo;', true, 'right'); bloginfo('name'); ?></title>
+	<title><?php wp_title(); ?></title>
 <?php
 $setting = get_option('_slimwriter_');
 $theme_url = get_template_directory_uri();

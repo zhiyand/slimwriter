@@ -30,7 +30,8 @@
 
 		<ol class="commentlist">
 			<?php
-				wp_list_comments( array( 'callback' => '_slimwriter_comment' ) );
+			global $slimwriter;
+			wp_list_comments( array( 'callback' => array($slimwriter, 'comment') ) );
 			?>
 		</ol>
 

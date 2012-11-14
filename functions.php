@@ -42,6 +42,9 @@ class SlimWriterTheme{
 
 		add_filter('comment_form_default_fields', array( &$this, 'comment_fields') );
 		add_filter('the_title', array(&$this, 'title_filter'));
+		add_filter('wp_title', array(&$this, 'wp_title_filter'));
+		add_filter('embed_defaults', array(&$this, 'embed_defaults'));
+
 		add_action('wp_enqueue_scripts', array(&$this, 'enqueue'));
 		add_action('admin_menu', array(&$this, 'admin_menu'));
 		add_action('admin_init', array(&$this, 'register_setting'));
@@ -51,6 +54,15 @@ class SlimWriterTheme{
 		if(trim($title) == ''){
 			return '(No Title)';
 		}
+		return $title;
+	}
+	function wp_title_filter($title, $sep, $position){
+		if(trim($title) == ''){
+			$title = '(No Title)';
+		}
+
+		$title .= '&raquo; '. get_bloginfo('name');
+
 		return $title;
 	}
 
@@ -187,6 +199,12 @@ class SlimWriterTheme{
 		$input['logo'] = esc_url_raw($input['logo'], array('http', 'https'));
 
 		return $input;
+	}
+
+	function embed_defaults($size){
+		$size['width'] = 652;
+		$size['height'] = 652 * .75;
+		return $size;
 	}
 
 };

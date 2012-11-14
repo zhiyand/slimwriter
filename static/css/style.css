@@ -397,6 +397,23 @@ article img{
 #commentform small,
 .comment-form small{ visibility:hidden; }
 
+#comments ol li div.text ol{
+	margin-left:2em;
+	border:none;
+}
+#comments ol li div.text li{
+	border:none;
+	margin:0;padding:0;
+	line-height:1.4em;
+	text-indent:0;
+}
+#comments ol li div.text ol li{
+	list-style-type:decimal;
+}
+#comments ol li div.text ul li{
+	list-style-type:circle;
+}
+
 /* Editor */
 
 div.field{
