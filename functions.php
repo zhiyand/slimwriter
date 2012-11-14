@@ -48,6 +48,10 @@ class SlimWriterTheme{
 		add_action('wp_enqueue_scripts', array(&$this, 'enqueue'));
 		add_action('admin_menu', array(&$this, 'admin_menu'));
 		add_action('admin_init', array(&$this, 'register_setting'));
+		add_action('after_setup_theme', array(&$this, 'after_setup_theme'));
+	}
+	function after_setup_theme(){
+		load_theme_textdomain('slimwriter', get_template_directory() . '/languages');
 	}
 
 	function title_filter($title){
