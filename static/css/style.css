@@ -1,11 +1,11 @@
 body{
-	font-family: 'Tienne', '宋体', serif;
+	font-family: 'Tienne', Arial, sans-serif;
 	line-height:1.8em;
 	color:#333;
 	background:#fff url(../pattern/body-bg14.png) repeat;
 }
 h1, h2, h3, h4, h5, h6{
-	font-family: 'Bilbo', '黑体', cursive;}
+	font-family: 'Bilbo', Georgia, cursive;}
 h1{ font-size:2.8em; line-height:1.1em; }
 h2{ font-size:2.5em; line-height:1.2em; }
 h3{ font-size:2.1em; line-height:1.2em; }
@@ -81,9 +81,9 @@ input[type=submit], input[type=button], input[type=reset]{
 }
 
 ::-webkit-input-placeholder 
-{ color:#aaa; font-family: 'Tienne', '宋体', serif; font-size:.75em; }
+{ color:#aaa; font-family: 'Tienne', Georgia, serif; font-size:.75em; }
 input:-moz-placeholder
-{ color:#aaa; font-family: 'Tienne', '宋体', serif; font-size:.75em; }
+{ color:#aaa; font-family: 'Tienne', Georgia, serif; font-size:.75em; }
 
 form p{
 	padding:.2em 0;
