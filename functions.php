@@ -181,8 +181,7 @@ class SlimWriterTheme{
 	}
 
 	function admin_menu(){
-		add_submenu_page('themes.php',
-			__('SlimWriter Options', 'slimwriter'),
+		add_theme_page( __('SlimWriter Options', 'slimwriter'),
 			__('SlimWriter Options', 'slimwriter'),
 			'edit_theme_options',
 			'slimwriter',
