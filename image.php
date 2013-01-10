@@ -1,7 +1,7 @@
 <?php get_header();?>
 
 <?php if(have_posts()) : while(have_posts()) : the_post();
-$nail = get_the_post_thumbnail( get_the_ID(),  '-slimwriter-featured-big');
+$_slimwriter_nail = get_the_post_thumbnail( get_the_ID(),  '-slimwriter-featured-big');
 ?>
 
 <header>
@@ -11,7 +11,7 @@ $nail = get_the_post_thumbnail( get_the_ID(),  '-slimwriter-featured-big');
 
 <?php
 
-$attachments = array_values( get_children( array(
+$_slimwriter_attachments = array_values( get_children( array(
 	'post_parent' => $post->post_parent,
 	'post_status' => 'inherit',
 	'post_type' => 'attachment',
@@ -19,24 +19,24 @@ $attachments = array_values( get_children( array(
 	'order' => 'ASC',
 	'orderby' => 'menu_order ID' ) ) );
 
-foreach ( $attachments as $k => $attachment ) { 
+foreach ( $_slimwriter_attachments as $k => $attachment ) { 
 	if ( $attachment->ID == $post->ID )
 		break;
 }   
 $k++;
 
-if ( count( $attachments ) > 1 ) { 
-	if ( isset( $attachments[ $k ] ) ){
-		$next_attachment_url = get_attachment_link( $attachments[ $k ]->ID );
+if ( count( $_slimwriter_attachments ) > 1 ) { 
+	if ( isset( $_slimwriter_attachments[ $k ] ) ){
+		$_slimwriter_next_attachment_url = get_attachment_link( $_slimwriter_attachments[ $k ]->ID );
 	}else{
-		$next_attachment_url = get_attachment_link( $attachments[ 0 ]->ID );
+		$_slimwriter_next_attachment_url = get_attachment_link( $_slimwriter_attachments[ 0 ]->ID );
 	}
 }else{
-	$next_attachment_url = wp_get_attachment_url();
+	$_slimwriter_next_attachment_url = wp_get_attachment_url();
 }
 
 ?>
-	<p><a href="<?php echo esc_url( $next_attachment_url ); ?>" title="<?php the_title_attribute(); ?>" rel="attachment">
+	<p><a href="<?php echo esc_url( $_slimwriter_next_attachment_url ); ?>" title="<?php the_title_attribute(); ?>" rel="attachment">
 <?php
 
 echo wp_get_attachment_image( $post->ID, array( 650, 1024 ) );
@@ -60,7 +60,7 @@ echo wp_get_attachment_image( $post->ID, array( 650, 1024 ) );
 
 <?php endwhile; else:?>
 
-<h4>The content you're looking for does not exist.</h4>
+<h4><?php _e("The content you're looking for does not exist.", 'slimwriter');?></h4>
 
 <?php endif;?>
 <?php comments_template();?>

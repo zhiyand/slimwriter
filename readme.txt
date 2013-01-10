@@ -32,3 +32,7 @@ SlimWriter is a slim theme, but in the same time, it is feature-rich too. Here i
 
 1. Upload the theme folder to the `/wp-content/themes/` directory
 2. Activate the theme through the 'Themes' menu in WordPress
+
+== Bundled Resources ==
+
+Images contained in this theme are released under the same licence as the theme itself.

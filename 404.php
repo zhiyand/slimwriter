@@ -1,11 +1,11 @@
 <?php get_header();?>
 
 <header>
-	<h1>404 - Nothing Found</h1>
+	<h1><?php _e('404 - Nothing Found');?></h1>
 </header>
 <article>
-	<p>The content you're looking for is probably deleted or does not exist. Sorry, buddy.</p>
-	<p>Maybe you can try to search the site using the following form.</p>
+<p><?php _e("The content you're looking for is probably deleted or does not exist. Sorry, buddy.", 'slimwriter');?></p>
+<p><?php _e("Maybe you can try to search the site using the following form.", 'slimwriter');?></p>
 	<?php get_search_form();?>
 </article>
 

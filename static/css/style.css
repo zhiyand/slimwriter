@@ -454,9 +454,14 @@ aside .half{
 	width:50%;
 	float:left;
 	margin:0;padding:0;
+	overflow:hidden;
 }
 aside section{
 	padding:0 .5em;
+}
+aside .half select,
+aside .half img{
+	max-width:100%;
 }
 
 .comment-nav{

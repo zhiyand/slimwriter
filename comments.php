@@ -53,9 +53,10 @@
 		<?php endif; // check for comment navigation ?>
 
 	<?php comment_form(array(
-		'comment_field' => '<p class="comment-f field"><textarea placeholder="Comment" id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea><span class="required">*</span></p>',
-		'comment_notes_after' => '<p style="color:#000;"><strong>NOTE - You can user these HTML tags and attributes:</strong></p>
+		'comment_field' => sprintf('<p class="comment-f field"><textarea placeholder="%s" id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea><span class="required">*</span></p>', __('Comment', 'slimwriter')),
+		'comment_notes_after' => sprintf('<p style="color:#000;"><strong>%s</strong></p>
 		<code>&lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;strike&gt; &lt;strong&gt; </code> ',
+			__('NOTE - You can use these HTML tags and attributes:', 'slimwriter') ),
 	)); ?>
 
 </div><!-- #comments -->
