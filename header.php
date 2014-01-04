@@ -6,10 +6,10 @@
 
 	<title><?php wp_title(' &laquo; ', true, 'right'); ?></title>
 <?php
-$zd_setting = get_option('_slimwriter_');
-$zd_theme_url = get_template_directory_uri();
+$slimwriter_setting = get_option('_slimwriter_');
+$slimwriter_theme_url = get_template_directory_uri();
 
-$zd_setting['logo'] = $zd_setting['logo'] ? $zd_setting['logo'] : ($zd_theme_url . '/static/images/logo.png');
+$slimwriter_setting['logo'] = $slimwriter_setting['logo'] ? $slimwriter_setting['logo'] : ($slimwriter_theme_url . '/static/images/logo.png');
 ?>
 
 	<?php
@@ -20,9 +20,10 @@ $zd_setting['logo'] = $zd_setting['logo'] ? $zd_setting['logo'] : ($zd_theme_url
 <body <?php body_class();?>>
 	<div id="wrap">
 		<div id="nav"><nav>
-			<a id="logo" href="<?php echo home_url();?>"><img src="<?php echo esc_url($zd_setting['logo']) ?>" /></a>
+			<a id="logo" href="<?php echo home_url();?>"><img src="<?php echo esc_url($slimwriter_setting['logo']) ?>" /></a>
 <?php
-$zd_primary_menu = array(
+$slimwriter_primary_menu = array(
+
 'theme_location'  => 'primary',
 'container'       => false, //'ul', 
 'container_class' => 'menu-{menu slug}-container', 
@@ -32,6 +33,7 @@ $zd_primary_menu = array(
 'fallback_cb' => ''
 );
 
-wp_nav_menu( $zd_primary_menu ); ?>
+wp_nav_menu( $slimwriter_primary_menu ); ?>
+
 
 		</nav></div>

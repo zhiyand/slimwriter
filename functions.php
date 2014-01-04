@@ -5,26 +5,6 @@ include( get_template_directory() . '/lib/agent.php' );
 /* Menu */
 register_nav_menu( 'primary', 'Primary navigation on the top of the page' );
 
-/* Sidebar */
-
-register_sidebar(array(
-	'name'          => 'Left Sidebar',
-	'id'            => 'sidebar-left',
-	'description'   => 'The sidebar on the left part of the page.',
-	'before_widget' => '<section id="%1$s" class="widget %2$s">',
-	'after_widget'  => '</section>',
-	'before_title'  => '<h4 class="widgettitle">',
-	'after_title'   => '</h4>' ));
-
-register_sidebar(array(
-	'name'          => 'Right Sidebar',
-	'id'            => 'sidebar-right',
-	'description'   => 'The sidebar on the right part of the page.',
-	'before_widget' => '<section id="%1$s" class="widget %2$s">',
-	'after_widget'  => '</section>',
-	'before_title'  => '<h4 class="widgettitle">',
-	'after_title'   => '</h4>' ));
-
 if(!isset($content_width)) $content_width = '700';
 
 class zd_SlimWriterTheme{
@@ -172,9 +152,9 @@ class zd_SlimWriterTheme{
 	function comment_fields($fields)
 	{
 		$fields = array(
-			'<p class="field"><input placeholder="Name" id="author" name="author" type="text" value="" size="30" aria-required="true" /><span class="required">*</span><small>Name</small></p>',
-			'<p class="field"><input placeholder="Email" id="email" name="email" type="text" value="" size="30" aria-required="true" /><span class="required">*</span><small>Email</small></p>',
-			'<p class="field"><input id="url" name="url" type="text" value="" size="30" placeholder="Website" /><small>Website</small></p>',
+			sprintf('<p class="field"><input placeholder="%s" id="author" name="author" type="text" value="" size="30" aria-required="true" /><span class="required">*</span><small>%s</small></p>', __('Name', 'slimwriter'), __('Name', 'slimwriter') ),
+			sprintf('<p class="field"><input placeholder="%s" id="email" name="email" type="text" value="" size="30" aria-required="true" /><span class="required">*</span><small>%s</small></p>', __('Email', 'slimwriter'), __('Email', 'slimwriter')),
+			sprintf('<p class="field"><input id="url" name="url" type="text" value="" size="30" placeholder="%s" /><small>%s</small></p>', __('Website', 'slimwriter'), __('Website', 'slimwriter')),
 		);
 
 		return $fields;
@@ -231,8 +211,34 @@ class zd_SlimWriterTheme{
 		return $size;
 	}
 
+	static $SIDEBARS = array(
+	array(
+		'name'          => 'Left Sidebar',
+		'id'            => 'sidebar-left',
+		'description'   => 'The sidebar on the left part of the page.',
+		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<h4 class="widgettitle">',
+		'after_title'   => '</h4>' ),
+
+	array(
+		'name'          => 'Right Sidebar',
+		'id'            => 'sidebar-right',
+		'description'   => 'The sidebar on the right part of the page.',
+		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<h4 class="widgettitle">',
+		'after_title'   => '</h4>' ),
+	);
+
 };
 
 $zd_slimwriter = new zd_SlimWriterTheme();
+
+/* Sidebar */
+
+foreach(zd_SlimWriterTheme::$SIDEBARS as $sidebar){
+	register_sidebar($sidebar);
+}
 
 ?>
