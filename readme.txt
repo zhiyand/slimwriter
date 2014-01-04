@@ -1,7 +1,7 @@
 === SlimWriter ===
 Contributors: dzy0451
-Donate link: http://zhiyan.at/article/slimwriter
-Tags: black, gray, white, one-column, fixed-layout,responsive-layout,custom-menu,featured-images,microformats,sticky-post,threaded-comments
+Donate link: http://www.slimtheme.com/slimwriter/
+Tags: black, gray, white, one-column, fixed-layout,responsive-layout,custom-menu,featured-images,sticky-post,threaded-comments
 Requires at least: 3.0.2
 Tested up to: 3.8
 License: GPLv2 or later
