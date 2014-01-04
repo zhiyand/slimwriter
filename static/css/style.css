@@ -1,11 +1,12 @@
 body{
-	font-family: 'Tienne', Arial, sans-serif;
+	font-family: 'Merriweather', Arial, sans-serif;
 	line-height:1.8em;
+	font-weight: 300;
 	color:#333;
 	background:#fff url(../pattern/body-bg14.png) repeat;
 }
 h1, h2, h3, h4, h5, h6{
-	font-family: 'Bilbo', Georgia, cursive;}
+	font-family: 'Raleway', Georgia, cursive;}
 h1{ font-size:2.8em; line-height:1.1em; }
 h2{ font-size:2.5em; line-height:1.2em; }
 h3{ font-size:2.1em; line-height:1.2em; }
@@ -48,6 +49,9 @@ code{
 	-webkit-border-radius: 3px;
 	border-radius:3px;
 }
+select{
+	max-width:100%;
+}
 input[type=text], input[type=password],
 textarea{
 	font-size:1em;
@@ -81,16 +85,15 @@ input[type=submit], input[type=button], input[type=reset]{
 }
 
 ::-webkit-input-placeholder 
-{ color:#aaa; font-family: 'Tienne', Georgia, serif; font-size:.75em; }
+{ color:#aaa; font-family: 'Merriweather', Georgia, serif; font-size:.75em; }
 input:-moz-placeholder
-{ color:#aaa; font-family: 'Tienne', Georgia, serif; font-size:.75em; }
+{ color:#aaa; font-family: 'Merriweather', Georgia, serif; font-size:.75em; }
 
 form p{
 	padding:.2em 0;
 }
 
 strong{ font-weight:700; }
-header strong{ font-weight:900; }
 small{ font-size:.75em; }
 big{ font-size:1.2em; }
 
@@ -123,7 +126,12 @@ th{
 	font-weight:700;
 	background:#f1f1f1;
 }
-
+dt{
+	font-weight:700;
+}
+dd{
+	padding-left:2em;
+}
 abbr, acronym{
 	border-bottom:1px dashed #aaa;
 	cursor:help;
@@ -141,7 +149,7 @@ ins{ background:#f5f5f5; }
 s{ text-decoration:line-through; }
 
 header{
-	background:#4e4e4e url(../pattern/body-bg9.png) repeat;
+	background:#4e4e4e url(../pattern/body-bg.png) repeat;
 	text-align:center;
 	color:#fff;
 	padding:1em .5em .5em;
@@ -168,8 +176,9 @@ article h1, article h2, article h3, article h4, article h5, article h6{
 article p{
 	padding:.5em 0;
 }
-article img{
+img{
 	max-width:100%;
+	height:auto;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius:5px;
@@ -192,10 +201,10 @@ aside section h4{
 }
 footer{
 	padding:20px;
-	color:#fff;
+	color:#bbb;
 	font-size:.8em;
 	text-align:center;
-	background:#4e4e4e url(../pattern/body-bg9.png) repeat;
+	background:#4e4e4e url(../pattern/body-bg.png) repeat;
 	-moz-box-shadow:    inset 0 -1px 10px #333;
 	-webkit-box-shadow: inset 0 -1px 10px #333;
 	box-shadow:         inset 0 -1px 10px #333;
@@ -203,6 +212,14 @@ footer{
 	-webkit-border-radius:0 0 5px 5px;
 	border-radius:0 0 5px 5px;
 	clear:both;
+}
+footer a:link,
+footer a:visited,
+footer a:hover,
+footer a:active
+{
+	color:#fff;
+	text-decoration:underline;
 }
 
 nav.pager{
@@ -244,11 +261,9 @@ nav.pager ul li a:hover{
 }
 
 #nav nav{
-	position:fixed;
-	top:0;
-	background:#4e4e4e url(../pattern/body-bg9.png) repeat;
+	background:#4e4e4e url(../pattern/body-bg.png) repeat;
 	width:100%;
-	margin:0 auto;
+	margin:0 auto 20px;
 	-moz-border-radius:0 0 5px 5px ;
 	-webkit-border-radius:0 0 5px 5px ;
 	border-radius:0 0 5px 5px ;
@@ -264,7 +279,7 @@ nav.pager ul li a:hover{
 	text-indent:0;
 	position:absolute;
 	right:0;top:0;
-	max-width:500px;
+	max-width:70%;
 	height:45px;
 	overflow:hidden;
 }
@@ -286,6 +301,9 @@ nav.pager ul li a:hover{
 #nav nav ul li.current-menu-item a,
 #nav nav ul li a:hover{ color: #000; background:#fff; }
 #nav nav ul li a:active{ color: #f5f5f5; }
+#nav nav ul li ul{
+	display:none;
+}
 
 #logo{
 	width:160px;height:45px;
@@ -297,7 +315,7 @@ nav.pager ul li a:hover{
 #wrap{
 	position:relative;
 	width:100%;
-	margin:55px auto 1.5em;
+	margin:0 auto 1.5em;
 }
 
 p.meta,
@@ -470,7 +488,12 @@ aside section{
 	float:right;
 }
 
-.wp-caption{ text-align:center; }
+.wp-caption{
+	text-align:center;
+	max-width:100%;
+	height:auto;
+	font-style:italic;
+}
 .wp-caption-text{ text-align: center; }
 .gallery-caption{ text-align: center; }
 .sticky{}

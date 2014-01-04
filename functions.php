@@ -7,31 +7,27 @@ register_nav_menu( 'primary', 'Primary navigation on the top of the page' );
 
 /* Sidebar */
 
-$args = array(
+register_sidebar(array(
 	'name'          => 'Left Sidebar',
 	'id'            => 'sidebar-left',
 	'description'   => 'The sidebar on the left part of the page.',
 	'before_widget' => '<section id="%1$s" class="widget %2$s">',
 	'after_widget'  => '</section>',
 	'before_title'  => '<h4 class="widgettitle">',
-	'after_title'   => '</h4>' );
+	'after_title'   => '</h4>' ));
 
-register_sidebar($args);
-
-$args = array(
+register_sidebar(array(
 	'name'          => 'Right Sidebar',
 	'id'            => 'sidebar-right',
 	'description'   => 'The sidebar on the right part of the page.',
 	'before_widget' => '<section id="%1$s" class="widget %2$s">',
 	'after_widget'  => '</section>',
 	'before_title'  => '<h4 class="widgettitle">',
-	'after_title'   => '</h4>' );
-
-register_sidebar($args);
+	'after_title'   => '</h4>' ));
 
 if(!isset($content_width)) $content_width = '700';
 
-class SlimWriterTheme{
+class zd_SlimWriterTheme{
 
 
 	function __construct(){
@@ -45,6 +41,7 @@ class SlimWriterTheme{
 		add_filter('the_title', array(&$this, 'title_filter'));
 		add_filter('wp_title', array(&$this, 'wp_title_filter'), 10, 3);
 		add_filter('embed_defaults', array(&$this, 'embed_defaults'));
+		add_filter('img_caption_shortcode_width', array($this, 'img_caption_shortcode_width'), 10, 3);
 
 		add_action('wp_enqueue_scripts', array(&$this, 'enqueue'));
 		add_action('admin_menu', array(&$this, 'admin_menu'));
@@ -55,6 +52,9 @@ class SlimWriterTheme{
 		load_theme_textdomain('slimwriter', get_template_directory() . '/languages');
 	}
 
+	function img_caption_shortcode_width($caption_width, $atts, $content){
+		return $caption_width -10;
+	}
 	function title_filter($title){
 		if(trim($title) == ''){
 			return '(No Title)';
@@ -62,7 +62,7 @@ class SlimWriterTheme{
 		return $title;
 	}
 	function wp_title_filter($title, $sep = '', $position = ''){
-		if(trim($title) == ''){
+		if(is_single() && trim($title) == ''){
 			$title = '(No Title)';
 		}
 
@@ -97,14 +97,14 @@ class SlimWriterTheme{
 		wp_register_style('-slimwriter-reset', $theme_url . '/static/css/reset.css');
 		wp_register_style('-slimwriter-style', $theme_url . '/static/css/style.css');
 		wp_register_style('-slimwriter-icon-font', $theme_url . '/static/css/icon-font/style.css');
-		wp_register_style('-slimwriter-fonts', 'http://fonts.googleapis.com/css?family=Bilbo|Tienne:400,700,900');
+		wp_register_style('-slimwriter-fonts', 'http://fonts.googleapis.com/css?family=Raleway:300|Merriweather:300,700,300italic,700italic');
 
 		wp_enqueue_style('-slimwriter-fonts');
 		wp_enqueue_style('-slimwriter-reset');
 		wp_enqueue_style('-slimwriter-style');
 		wp_enqueue_style('-slimwriter-icon-font');
 
-		$browser = _slimwriter_parseUserAgent($_SERVER['HTTP_USER_AGENT']);
+		$browser = zd_slimwriter_parseUserAgent($_SERVER['HTTP_USER_AGENT']);
 
 		if($browser[0] == 'MSIE' && $browser[1] < 9){
 			wp_register_style('-slimwriter-lt-ie9', $theme_url . '/static/css/lt-ie9.css');
@@ -207,7 +207,7 @@ class SlimWriterTheme{
 		</td>
 	</tr>
 </table>
-<p class="submit"><input type="submit" name="submit" id="submit" class="button-primary"	 value="Save Changes" />
+<p class="submit"><input type="submit" name="submit" id="submit" class="button-primary"	 value="<?php _e('Save Changes', 'slimwriter'); ?>" />
 	</form>
 </div>
 </div><!-- #wrap -->
@@ -233,6 +233,6 @@ class SlimWriterTheme{
 
 };
 
-$slimwriter = new SlimWriterTheme();
+$zd_slimwriter = new zd_SlimWriterTheme();
 
 ?>

@@ -45,11 +45,11 @@ echo wp_get_attachment_image( $post->ID, array( 650, 1024 ) );
 </a></p>
 
 	<?php the_content();?>
-	<?php wp_link_pages( array( 'before' => '<div class="page-link"><span>' . __( 'Pages:', 'slimcoder' ) . '</span>', 'after' => '</div>' ) ); ?>
+	<?php wp_link_pages( array( 'before' => '<div class="page-link"><span>' . __( 'Pages:', 'slimwriter' ) . '</span>', 'after' => '</div>' ) ); ?>
 </article>
 <aside class="article-meta">
 	<div class="avatar"><?php echo get_avatar( get_the_author_meta('user_email'), 48); ?></div>
-	<p><span class="icon-user"> Author</span> : <?php the_author_link();?>, <span class="icon-calendar"> Published at</span> : <?php the_date();?>, <?php  the_time();?></p>
+	<p><span class="icon-user"> <?php _e('Author', 'slimwriter');?></span> : <?php the_author_link();?>, <span class="icon-calendar"> <?php _e('Published at', 'slimwriter');?></span> : <?php the_date();?>, <?php  the_time();?></p>
 	<div class="clear"></div>
 </aside>
 <nav class="pager">
@@ -60,7 +60,7 @@ echo wp_get_attachment_image( $post->ID, array( 650, 1024 ) );
 
 <?php endwhile; else:?>
 
-<h4>The content you're looking for does not exist.</h4>
+<h4><?php _e("The content you're looking for does not exist.", 'slimwriter');?></h4>
 
 <?php endif;?>
 <?php comments_template();?>

@@ -14,14 +14,14 @@ $nail = get_the_post_thumbnail( get_the_ID(),  '-slimwriter-featured-big');
 
 	<?php endif; // nail ?>
 	<?php the_content();?>
-	<?php wp_link_pages( array( 'before' => '<div class="page-link"><span>' . __( 'Pages:', 'slimcoder' ) . '</span>', 'after' => '</div>' ) ); ?>
+	<?php wp_link_pages( array( 'before' => '<div class="page-link"><span>' . __( 'Pages:', 'slimwriter' ) . '</span>', 'after' => '</div>' ) ); ?>
 	<ul><?php wp_list_pages("title_li=&child_of=".get_the_ID()); ?></ul>
 	<div class="clear"></div>
 </article>
 
 <?php endwhile; else:?>
 
-<h4>The content you're looking for does not exist.</h4>
+<h4><?php _e("The content you're looking for does not exist.", 'slimwriter');?></h4>
 
 <?php endif;?>
 <?php comments_template();?>

@@ -1,9 +1,9 @@
 === SlimWriter ===
 Contributors: dzy0451
 Donate link: http://zhiyan.at/article/slimwriter
-Tags: black, gray, white, one-column, fixed-width,custom-menu,featured-images,microformats,post-formats,sticky-post,threaded-comments
+Tags: black, gray, white, one-column, fixed-layout,responsive-layout,custom-menu,featured-images,microformats,sticky-post,threaded-comments
 Requires at least: 3.0.2
-Tested up to: 3.4
+Tested up to: 3.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,9 +13,9 @@ SlimWriter is designed to be a very slim and clean theme. It’s a very good cho
 
 There sure are a lot of fancy WordPress themes out there, but when I try to find one to use with my personal blog, I figured there’s not a particular theme that suites my need. I don’t need most of the fancy parts for my blog, I just want it to be a clean and tidy piece of land where I can write my articles and share my thoughts with others.
 
-So, I decided to create such a theme on my own. I name it SlimWriter because I want it to be slim. It should be a very clean and elegant theme where there’s no fancy decorations that would distract the readers. No annoying sliders, graphics etc. I believe blogging is all about writing articles, create useful contents. So, SlimWriter is aimed to be friendly to both the writers, and the readers. So that the writers can create contents with value and the readers can get useful informations without any disturbance.
+So, I decided to create such a theme on my own. I name it SlimWriter because I want it to be slim. It should be a very clean and elegant theme where there’s no fancy decorations that would distract the readers. No annoying sliders, graphics etc. I believe blogging is all about writing articles, create useful contents. So, SlimWriter is aimed to be friendly to both the writers, and the readers. So that the writers can create contents with value and the readers can get useful information without any disturbance.
 
-SlimWriter is a slim theme, but in the same time, it is feature-rich too. Here is a brief list: 
+SlimWriter is a slim theme, but at the same time, it is feature-rich too. Here is a brief list: 
 
 * Small & Fast
 * Clean & Neat
@@ -32,3 +32,12 @@ SlimWriter is a slim theme, but in the same time, it is feature-rich too. Here i
 
 1. Upload the theme folder to the `/wp-content/themes/` directory
 2. Activate the theme through the 'Themes' menu in WordPress
+3. Set the logo URL at Appearence -> SlimWriter Options
+
+== Copyright ==
+
+SlimWriter WordPress Theme, Copyright 2014 SlimTheme.com
+
+== Licence ==
+
+The SlimWriter WordPress theme and its bundled resources are licenced under GNU General Public License v2.0.

@@ -16,7 +16,7 @@
 	<?php if ( have_comments() ) : ?>
 		<h5 id="comments-title"><div class="icon"></div>
 			<?php
-				printf( _n( 'There\'s one comment on for this post.', 'There\'re %1$s comments for this post.', get_comments_number(), 'slimwriter' ),
+				printf( _n( 'There\'s one comment on this post.', 'There\'re %1$s comments on this post.', get_comments_number(), 'slimwriter' ),
 					number_format_i18n( get_comments_number() ), '<span>' . get_the_title() . '</span>' );
 			?>
 		</h5>
@@ -30,8 +30,8 @@
 
 		<ol class="commentlist">
 			<?php
-			global $slimwriter;
-			wp_list_comments( array( 'callback' => array($slimwriter, 'comment') ) );
+			global $zd_slimwriter;
+			wp_list_comments( array( 'callback' => array($zd_slimwriter, 'comment') ) );
 			?>
 		</ol>
 
@@ -53,8 +53,8 @@
 		<?php endif; // check for comment navigation ?>
 
 	<?php comment_form(array(
-		'comment_field' => '<p class="comment-f field"><textarea placeholder="Comment" id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea><span class="required">*</span></p>',
-		'comment_notes_after' => '<p style="color:#000;"><strong>NOTE - You can user these HTML tags and attributes:</strong></p>
+		'comment_field' => '<p class="comment-f field"><textarea placeholder="'. __('Comment', 'slimwriter') .'" id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea><span class="required">*</span></p>',
+		'comment_notes_after' => '<p style="color:#000;"><strong>'. __('NOTE - You can user these HTML tags and attributes', 'slimwriter'). ':</strong></p>
 		<code>&lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;strike&gt; &lt;strong&gt; </code> ',
 	)); ?>
 
