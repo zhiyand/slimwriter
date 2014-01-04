@@ -3,7 +3,7 @@
 include( get_template_directory() . '/lib/agent.php' );
 
 /* Menu */
-register_nav_menu( 'primary', 'Primary navigation on the top of the page' );
+register_nav_menu( 'primary', 'Primary' );
 
 if(!isset($content_width)) $content_width = '700';
 
