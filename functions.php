@@ -2,8 +2,6 @@
 
 include( get_template_directory() . '/lib/agent.php' );
 
-/* Menu */
-register_nav_menu( 'primary', 'Primary' );
 
 if(!isset($content_width)) $content_width = '700';
 
@@ -11,11 +9,7 @@ class zd_SlimWriterTheme{
 
 
 	function __construct(){
-		add_theme_support( 'post-thumbnails' );
-		add_theme_support( 'automatic-feed-links' );
 
-		add_image_size('-slimwriter-featured-big', 700, 450, true);
-		add_image_size('-slimwriter-featured-small', 140, 90, true);
 
 		add_filter('comment_form_default_fields', array( &$this, 'comment_fields') );
 		add_filter('the_title', array(&$this, 'title_filter'));
@@ -27,9 +21,23 @@ class zd_SlimWriterTheme{
 		add_action('admin_menu', array(&$this, 'admin_menu'));
 		add_action('admin_init', array(&$this, 'register_setting'));
 		add_action('after_setup_theme', array(&$this, 'after_setup_theme'));
+
+		add_action('widgets_init', array(&$this, 'widgets_init'));
 	}
 	function after_setup_theme(){
+		add_theme_support( 'post-thumbnails' );
+		add_theme_support( 'automatic-feed-links' );
+		add_image_size('-slimwriter-featured-big', 700, 450, true);
+		add_image_size('-slimwriter-featured-small', 140, 90, true);
+
 		load_theme_textdomain('slimwriter', get_template_directory() . '/languages');
+
+		register_nav_menu( 'primary', 'Primary' );
+	}
+	function widgets_init(){
+		foreach(self::$SIDEBARS as $sidebar){
+			register_sidebar($sidebar);
+		}
 	}
 
 	function img_caption_shortcode_width($caption_width, $atts, $content){
@@ -235,10 +243,5 @@ class zd_SlimWriterTheme{
 
 $zd_slimwriter = new zd_SlimWriterTheme();
 
-/* Sidebar */
-
-foreach(zd_SlimWriterTheme::$SIDEBARS as $sidebar){
-	register_sidebar($sidebar);
-}
 
 ?>

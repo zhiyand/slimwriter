@@ -307,9 +307,14 @@ nav.pager ul li a:hover{
 
 #logo{
 	width:160px;height:45px;
-	line-height:0;
+	line-height:45px;
 	display:block;
 	position:absolute;
+	color:#fff;
+	overflow:hidden;
+	font-size:24px;
+	padding-left:15px;
+	text-decoration:none;
 }
 
 #wrap{

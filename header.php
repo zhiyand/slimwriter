@@ -9,7 +9,10 @@
 $slimwriter_setting = get_option('_slimwriter_');
 $slimwriter_theme_url = get_template_directory_uri();
 
-$slimwriter_setting['logo'] = $slimwriter_setting['logo'] ? $slimwriter_setting['logo'] : ($slimwriter_theme_url . '/static/images/logo.png');
+$slimwriter_logo = $slimwriter_setting['logo']
+	? ('<img src="'. esc_url($slimwriter_setting['logo']). '" />' )
+	: get_bloginfo('name');
+
 ?>
 
 	<?php
@@ -20,7 +23,7 @@ $slimwriter_setting['logo'] = $slimwriter_setting['logo'] ? $slimwriter_setting[
 <body <?php body_class();?>>
 	<div id="wrap">
 		<div id="nav"><nav>
-			<a id="logo" href="<?php echo home_url();?>"><img src="<?php echo esc_url($slimwriter_setting['logo']) ?>" /></a>
+			<a id="logo" href="<?php echo esc_url(home_url());?>"><?php echo $slimwriter_logo; ?></a>
 <?php
 $slimwriter_primary_menu = array(
 
