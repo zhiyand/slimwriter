@@ -34,6 +34,12 @@ SlimWriter is a slim theme, but at the same time, it is feature-rich too. Here i
 2. Activate the theme through the 'Themes' menu in WordPress
 3. Set the logo URL at Appearence -> SlimWriter Options
 
+== Limitations ==
+
+1. The main navigation menu does not support dropdown
+2. The main navigation menu can display 4-5 items at most
+3. The site title/logo area is 175px wide, and thus may cause display issues for sites with names longer than one word, in which case a logo is suggested.
+
 == Copyright ==
 
 SlimWriter WordPress Theme, Copyright 2014 SlimTheme.com
