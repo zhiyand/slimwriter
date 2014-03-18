@@ -7,7 +7,6 @@ if(!isset($content_width)) $content_width = '700';
 
 class zd_SlimWriterTheme{
 
-
 	function __construct(){
 
 
@@ -27,7 +26,7 @@ class zd_SlimWriterTheme{
 	function after_setup_theme(){
 		add_theme_support( 'post-thumbnails' );
 		add_theme_support( 'automatic-feed-links' );
-		add_image_size('-slimwriter-featured-big', 700, 450, true);
+		add_image_size('-slimwriter-featured-big', 700, 250, true);
 		add_image_size('-slimwriter-featured-small', 140, 90, true);
 
 		load_theme_textdomain('slimwriter', get_template_directory() . '/languages');
@@ -82,15 +81,15 @@ class zd_SlimWriterTheme{
 	function enqueue()
 	{
 		$theme_url = get_template_directory_uri(); //get_bloginfo('template_url');
-		wp_register_style('-slimwriter-reset', $theme_url . '/static/css/reset.css');
+		wp_register_style('-slimwriter-bootstrap', $theme_url . '/static/css/bootstrap.min.css');
 		wp_register_style('-slimwriter-style', $theme_url . '/static/css/style.css');
-		wp_register_style('-slimwriter-icon-font', $theme_url . '/static/css/icon-font/style.css');
+		//wp_register_style('-slimwriter-icon-font', $theme_url . '/static/css/icon-font/style.css');
 		wp_register_style('-slimwriter-fonts', 'http://fonts.googleapis.com/css?family=Raleway:300|Merriweather:300,700,300italic,700italic');
 
 		wp_enqueue_style('-slimwriter-fonts');
-		wp_enqueue_style('-slimwriter-reset');
+		wp_enqueue_style('-slimwriter-bootstrap');
 		wp_enqueue_style('-slimwriter-style');
-		wp_enqueue_style('-slimwriter-icon-font');
+		//wp_enqueue_style('-slimwriter-icon-font');
 
 		$browser = zd_slimwriter_parseUserAgent($_SERVER['HTTP_USER_AGENT']);
 
@@ -110,53 +109,46 @@ class zd_SlimWriterTheme{
 		}
 	}
 
-	function comment($comment, $args, $depth)
-	{
-		$GLOBALS['comment'] = $comment;
-		switch ( $comment->comment_type ) :
-			case 'pingback' :
-			case 'trackback' :
-		?>
-		<li class="post pingback">
-			<p><?php _e( 'Pingback:', 'slimwriter' ); ?> <?php comment_author_link(); ?><?php edit_comment_link( __( 'Edit', 'slimwriter' ), '<span class="edit-link">', '</span>' ); ?></p>
-		<?php
-				break;
-			default :
-		?>
-		<li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
-				<div class="vcard"> <?php echo get_avatar( $comment, 48 ); ?> </div>
-					
-				<div class="text">
+    static function comment($comment, $args, $depth)
+    {
+        $GLOBALS['comment'] = $comment;
+        switch ( $comment->comment_type ) :
+            case 'pingback' :
+            case 'trackback' :
+        ?>
+        <li class="post pingback">
+            <p><i class="glyphicon glyphicon-share"></i> <?php _e( 'Pingback', 'slim' ); ?>: <?php comment_author_link(); ?>
+<?php edit_comment_link( '<i class="glyphicon glyphicon-pencil"></i>', ' <span class="edit-link">', '</span>' ); ?></p>
+        <?php
+                break;
+            default :
+        ?>
+        <li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
+                <div class="vcard"> <?php echo get_avatar( $comment, 48 ); ?> </div>
 
-						<?php if ( $comment->comment_approved == '0' ) : ?>
-							<em class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.', 'slimwriter' ); ?></em>
-							<br />
-						<?php endif; ?>
-						<?php comment_text(); ?>
+                <div class="text">
+                <div class="date">
+<?php printf( '<span class="fn">%s</span> ', get_comment_author_link() ); ?>
+<?php printf( '<time pubdate datetime="%1$s">%2$s</time> ',
+    get_comment_time( 'c' ),
+    get_comment_date(  ));?>
+ <?php comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Reply', 'slim' ), 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
+ <?php edit_comment_link( __( 'Edit', 'slim' ), '', '' ); ?></p>
+                </div>
 
-				</div>
-				<div class="date">
-					<?php
-						/* translators: 1: comment author, 2: date and time */
-						printf( __( '%1$s on %2$s ', 'slimwriter' ),
-							sprintf( '<span class="fn">%s</span>', get_comment_author_link() ),
-							sprintf( '<a href="%1$s"><time pubdate datetime="%2$s">%3$s</time></a>',
-								esc_url( get_comment_link( $comment->comment_ID ) ),
-								get_comment_time( 'c' ),
-								/* translators: 1: date, 2: time */
-								sprintf( __( '%1$s at %2$s', 'slimwriter' ), get_comment_date(), get_comment_time() )
-							)
-						);
-					?>
-						, <?php comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Reply', 'slimwriter' ), 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
-				</div>
-				<div class="clear"></div>
-			</article><!-- #comment-## -->
+                        <?php if ( $comment->comment_approved == '0' ) : ?>
+                            <em class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.', 'slim' ); ?></em>
+                        <?php endif; ?>
+                        <?php comment_text(); ?>
 
-		<?php
-				break;
-		endswitch;
-	}
+                </div>
+                <div class="clearfix"></div>
+            </li><!-- #comment-## -->
+
+        <?php
+                break;
+        endswitch;
+    }
 	function comment_fields($fields)
 	{
 		$fields = array(
@@ -183,7 +175,7 @@ class zd_SlimWriterTheme{
 <div class="wrap">
 	<div id="icon-options-general" class="icon32"><br></div>
 	<h2>SlimWriter Theme Settings</h2>
-	<?php settings_errors(); ?>  
+	<?php settings_errors(); ?>
 <div id="slimwriter">
 	<form method="post" action="options.php">
 	<?php settings_fields( 'slimwriter' );?>
