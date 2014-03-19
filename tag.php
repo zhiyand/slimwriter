@@ -16,8 +16,8 @@
 <?php endif;?>
 
 <ul class="pager">
-    <li class="previous"><?php next_posts_link( _x('Older Posts', 'post navigation', 'slimwriter') . ' &raquo;' ); ?></li>
-    <li class="next"><?php previous_posts_link('&laquo; '. _x('Previous', 'post navigation', 'slimwriter') ); ?></li>
+    <li class="previous"><?php next_posts_link('&laquo; '. _x('Older Posts', 'post navigation', 'slimwriter')); ?></li>
+    <li class="next"><?php previous_posts_link(_x('Newer Posts', 'post navigation', 'slimwriter') . ' &raquo;' ); ?></li>
 </ul>
 
 <?php get_sidebar();?>

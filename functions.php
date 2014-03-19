@@ -88,9 +88,9 @@ class SlimWriterTheme{
     function comment_form_default_fields($fields)
     {
         $fields = array(
-            '<div class="form-group"><label class="col-sm-2 control-label" for="reply-author">'._x('Name','comment-form','slim' ).' <span class="required">*</span></label><div class="col-sm-10"><input class="form-control" placeholder="'._x('Name', 'comment-form', 'slim').'" id="reply-author" name="author" type="text" value="" size="30" aria-required="true" /></div></div>',
-            '<div class="form-group"><label class="col-sm-2 control-label" for="reply-email">'._x('Email', 'comment-form', 'slim').' <span class="required">*</span></label><div class="col-sm-10"><input class="form-control" placeholder="'._x('Email', 'comment-form', 'slim').'" id="reply-email" name="email" type="text" value="" size="30" aria-required="true" /></div></div>',
-            '<div class="form-group"><label class="col-sm-2 control-label" for="reply-url">'._x('Website', 'comment-form', 'slim').'</label><div class="col-sm-10"><input id="reply-url" class="form-control" name="url" type="text" value="" size="30" placeholder="'._x('http://', 'comment-form', 'slim').'" /></div></div>',
+            '<div class="form-group"><label class="col-sm-2 control-label" for="reply-author">'._x('Name','comment-form','slimwriter' ).' <span class="required">*</span></label><div class="col-sm-10"><input class="form-control" placeholder="'._x('Name', 'comment-form', 'slimwriter').'" id="reply-author" name="author" type="text" value="" size="30" aria-required="true" /></div></div>',
+            '<div class="form-group"><label class="col-sm-2 control-label" for="reply-email">'._x('Email', 'comment-form', 'slimwriter').' <span class="required">*</span></label><div class="col-sm-10"><input class="form-control" placeholder="'._x('Email', 'comment-form', 'slimwriter').'" id="reply-email" name="email" type="text" value="" size="30" aria-required="true" /></div></div>',
+            '<div class="form-group"><label class="col-sm-2 control-label" for="reply-url">'._x('Website', 'comment-form', 'slimwriter').'</label><div class="col-sm-10"><input id="reply-url" class="form-control" name="url" type="text" value="" size="30" placeholder="'._x('http://', 'comment-form', 'slimwriter').'" /></div></div>',
         );
 
         return $fields;
@@ -111,18 +111,18 @@ class SlimWriterTheme{
         <div class="form-group">
         <label class="col-sm-2"></label>
         <div class="col-sm-10">
-        <input type="submit" class="btn btn-success" value="Submit" />
+        <input type="submit" class="btn btn-success" value="%3$s" />
         </div>
-        </div>', $label, __('Your comment here...', 'slim'));
+        </div>', $label, __('Your comment here...', 'slimwriter'), __('Submit', 'slimwriter'));
     }
     function the_password_form(){
         global $post;
             $label = 'pwbox-'.( empty( $post->ID ) ? rand() : $post->ID );
             $o = '<form class="form form-horizontal" action="' . get_option('siteurl') . '/wp-pass.php" method="post"><p>'
-                . __( "This content is password protected. To view it please enter your password below.", 'slim' ) . '</p><div class="input-group">' .
-            '<span class="input-group-addon" for="'.$label.'">'. __("Password", 'slim').'</span>'.
+                . __( "This content is password protected. To view it please enter your password below.", 'slimwriter' ) . '</p><div class="input-group">' .
+            '<span class="input-group-addon" for="'.$label.'">'. __("Password", 'slimwriter').'</span>'.
             '<input name="post_password" id="' . $label . '" type="password" class="form-control" />'.
-            '<span class="input-group-btn"><input type="submit" name="Submit" class="btn btn-default" value="' . esc_attr__( "Submit" ) . '" /></span>'.
+            '<span class="input-group-btn"><input type="submit" name="Submit" class="btn btn-default" value="' . esc_attr__( "Submit", 'slimwriter' ) . '" /></span>'.
             '</div></form>';
             return $o;
     }
@@ -165,7 +165,7 @@ class SlimWriterTheme{
             case 'trackback' :
         ?>
         <li class="post pingback">
-            <p><i class="glyphicon glyphicon-share"></i> <?php _e( 'Pingback', 'slim' ); ?>: <?php comment_author_link(); ?>
+            <p><i class="glyphicon glyphicon-share"></i> <?php _e( 'Pingback', 'slimwriter' ); ?>: <?php comment_author_link(); ?>
 <?php edit_comment_link( '<i class="glyphicon glyphicon-pencil"></i>', ' <span class="edit-link">', '</span>' ); ?></p>
         <?php
                 break;
@@ -180,12 +180,12 @@ class SlimWriterTheme{
 <?php printf( '<time pubdate datetime="%1$s">%2$s</time> ',
     get_comment_time( 'c' ),
     get_comment_date(  ));?>
- <?php comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Reply', 'slim' ), 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
- <?php edit_comment_link( __( 'Edit', 'slim' ), '', '' ); ?></p>
+ <?php comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Reply', 'slimwriter' ), 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
+ <?php edit_comment_link( __( 'Edit', 'slimwriter' ), '', '' ); ?></p>
                 </div>
 
                         <?php if ( $comment->comment_approved == '0' ) : ?>
-                            <em class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.', 'slim' ); ?></em>
+                            <em class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.', 'slimwriter' ); ?></em>
                         <?php endif; ?>
                         <?php comment_text(); ?>
 

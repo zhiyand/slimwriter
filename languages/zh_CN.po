@@ -1,0 +1,190 @@
+# Copyright (C) 2014 Duan Zhiyan
+# This file is distributed under the GPL v2.
+msgid ""
+msgstr ""
+"Project-Id-Version: SlimWriter 1.0.7\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tags/slimwriter\n"
+"POT-Creation-Date: 2014-03-19 07:03:27+00:00\n"
+"PO-Revision-Date: 2014-03-19 15:14+0800\n"
+"Last-Translator: Duan Zhiyan <dzy0451@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 1.6.4\n"
+"Language: zh_CN\n"
+
+#: category.php:3
+msgid "Categories &raquo; %s"
+msgstr "文章分类 &raquo; %s"
+
+#: category.php:19 index.php:16 search.php:19 tag.php:19
+msgctxt "post navigation"
+msgid "Older Posts"
+msgstr "上一页"
+
+#: category.php:20 index.php:17 search.php:20 tag.php:20
+msgctxt "post navigation"
+msgid "Newer Posts"
+msgstr "下一页"
+
+#: comments.php:3
+msgid ""
+"This post is password protected. Enter the password to view any comments."
+msgstr "这篇文章已经被加密，输入密码才能查看文章评论。"
+
+#: comments.php:16
+msgid "Discussions"
+msgstr "讨论"
+
+#: comments.php:43
+msgid "Comments are closed."
+msgstr "评论已关闭"
+
+#: comments.php:46 content.php:19
+msgid "No comments"
+msgstr "暂无评论"
+
+#: comments.php:53
+msgid "Join the discussion"
+msgstr "加入讨论"
+
+#: content-page.php:22 content.php:30
+msgid "Pages:"
+msgstr "分页: "
+
+#: content.php:20
+msgid "One comment"
+msgstr "一条评论"
+
+#: content.php:21
+msgid "% comments"
+msgstr "%条评论"
+
+#: content.php:23
+msgid "Comments off"
+msgstr "评论已关闭"
+
+#: content.php:34
+msgid "Categories"
+msgstr "文章分类"
+
+#: content.php:41
+msgid "Previous Post"
+msgstr "上一篇文章"
+
+#: content.php:42
+msgid "Next Post"
+msgstr "下一篇文章"
+
+#: functions.php:91
+msgctxt "comment-form"
+msgid "Name"
+msgstr "姓名"
+
+#: functions.php:92
+msgctxt "comment-form"
+msgid "Email"
+msgstr "电子邮件"
+
+#: functions.php:93
+msgctxt "comment-form"
+msgid "Website"
+msgstr "个人网站"
+
+#: functions.php:93
+msgctxt "comment-form"
+msgid "http://"
+msgstr "http://"
+
+#: functions.php:116
+msgid "Your comment here..."
+msgstr "说点什么..."
+
+#: functions.php:122
+msgid ""
+"This content is password protected. To view it please enter your password "
+"below."
+msgstr "这篇文章已经被加密。输入密码才能查看文章内容。"
+
+#: functions.php:123
+msgid "Password"
+msgstr "密码"
+
+#: functions.php:125
+msgid "Submit"
+msgstr "提交"
+
+#: functions.php:168
+msgid "Pingback"
+msgstr "Pingback"
+
+#: functions.php:183
+msgid "Reply"
+msgstr "回复"
+
+#: functions.php:184
+msgid "Edit"
+msgstr "编辑"
+
+#: functions.php:188
+msgid "Your comment is awaiting moderation."
+msgstr "您的评论正在审核中，请稍候。"
+
+#: page.php:9 single.php:9
+msgid "The content you're looking for does not exist."
+msgstr "您要找的内容不存在。"
+
+#: search.php:3
+msgid "Search &raquo; %s"
+msgstr "搜索 &raquo; %s"
+
+#: searchform.php:3
+msgid "Search for..."
+msgstr "搜索..."
+
+#: searchform.php:5
+msgid "Search"
+msgstr "搜索"
+
+#: sidebar.php:13
+msgid "Copyright"
+msgstr "版权所有"
+
+#: sidebar.php:14
+msgid "Themed by"
+msgstr "Themed by"
+
+#: sidebar.php:14
+msgid "SlimTheme.com"
+msgstr "SlimTheme.com"
+
+#: tag.php:3
+msgid "Tags &raquo; %s"
+msgstr "文章标签 &raquo; %s"
+
+#. Theme Name of the plugin/theme
+msgid "SlimWriter"
+msgstr "SlimWriter"
+
+#. Theme URI of the plugin/theme
+msgid "http://www.slimtheme.com/slimwriter/"
+msgstr "http://www.slimtheme.com/slimwriter/"
+
+#. Description of the plugin/theme
+msgid ""
+"SlimWriter is designed to be a very slim and clean theme. It’s a very good "
+"choice for those who don’t need those fancy decorations and just want to "
+"write their articles in a clean and neat way."
+msgstr ""
+"SlimWriter是一个以简洁明快为设计目标的主题。它没有复杂的装饰，专注于内容的呈"
+"现。非常适合专注于内容的博客。"
+
+#. Author of the plugin/theme
+msgid "Duan Zhiyan"
+msgstr "段志岩"
+
+#. Author URI of the plugin/theme
+msgid "http://zhiyan.de"
+msgstr "http://zhiyan.de"

@@ -1,6 +1,6 @@
 <?php if ( post_password_required() ) : ?>
 <div id="comments" class="comments concavebox pane">
-    <p class="nopassword"><?php _e( 'This post is password protected. Enter the password to view any comments.', 'slim' ); ?></p>
+    <p class="nopassword"><?php _e( 'This post is password protected. Enter the password to view any comments.', 'slimwriter' ); ?></p>
 </div> <!-- .comments -->
 <?php
         /* Stop the rest of comments.php from being processed,
@@ -13,12 +13,12 @@
 
 <?php if ( have_comments() ) : ?>
 <div id="comments" class="comments concavebox clearfix pane">
-<h3 class="pane-title"><?php _e('Discussions', 'slim');?></h3>
+<h3 class="pane-title"><?php _e('Discussions', 'slimwriter');?></h3>
 
     <?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
-    <nav class="comment-nav">
+    <div class="comment-nav">
         <?php paginate_comments_links(); ?>
-    </nav>
+    </div>
     <?php endif; // check for comment navigation ?>
 
     <ol class="commentlist">
@@ -40,17 +40,17 @@
     elseif ( ! comments_open() && ! is_page() && post_type_supports( get_post_type(), 'comments' ) ) :
 ?>
 <div id="comments" class="comments concavebox clearfix pane">
-    <p class="nocomments"><?php _e( 'Comments are closed.', 'slim' ); ?></p>
+    <p class="nocomments"><?php _e( 'Comments are closed.', 'slimwriter' ); ?></p>
 </div> <!-- .comments -->
 <?php else:?>
-    <!--<p class="nocomments"><?php _e( 'No comments', 'slim' ); ?></p> -->
+    <!--<p class="nocomments"><?php _e( 'No comments', 'slimwriter' ); ?></p> -->
 <?php endif; ?>
 
 
 <?php if ( comments_open() && ! is_page() && post_type_supports( get_post_type(), 'comments' ) ) :?>
 <div class="concavebox clearfix pane"><div class="form-horizontal">
 <?php comment_form(array(
-    'title_reply' => __('Join the discussion', 'slim'),
+    'title_reply' => __('Join the discussion', 'slimwriter'),
     'comment_notes_after' => '',
 )); ?>
 </div></div>
