@@ -1,0 +1,182 @@
+# Copyright (C) 2014 Duan Zhiyan
+# This file is distributed under the GPL v2.
+msgid ""
+msgstr ""
+"Project-Id-Version: SlimWriter 1.0.7\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tags/slimwriter\n"
+"POT-Creation-Date: 2014-03-19 07:35:23+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2014-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: category.php:3
+msgid "Categories &raquo; %s"
+msgstr ""
+
+#: category.php:19 index.php:16 search.php:19 tag.php:19
+msgctxt "post navigation"
+msgid "Older Posts"
+msgstr ""
+
+#: category.php:20 index.php:17 search.php:20 tag.php:20
+msgctxt "post navigation"
+msgid "Newer Posts"
+msgstr ""
+
+#: comments.php:3
+msgid "This post is password protected. Enter the password to view any comments."
+msgstr ""
+
+#: comments.php:16
+msgid "Discussions"
+msgstr ""
+
+#: comments.php:43
+msgid "Comments are closed."
+msgstr ""
+
+#: comments.php:46 content.php:19
+msgid "No comments"
+msgstr ""
+
+#: comments.php:53
+msgid "Join the discussion"
+msgstr ""
+
+#: content-page.php:22 content.php:30
+msgid "Pages:"
+msgstr ""
+
+#: content.php:20
+msgid "One comment"
+msgstr ""
+
+#: content.php:21
+msgid "% comments"
+msgstr ""
+
+#: content.php:23
+msgid "Comments off"
+msgstr ""
+
+#: content.php:34
+msgid "Categories"
+msgstr ""
+
+#: content.php:35
+msgid "Tags"
+msgstr ""
+
+#: content.php:42
+msgid "Previous Post"
+msgstr ""
+
+#: content.php:43
+msgid "Next Post"
+msgstr ""
+
+#: functions.php:91
+msgctxt "comment-form"
+msgid "Name"
+msgstr ""
+
+#: functions.php:92
+msgctxt "comment-form"
+msgid "Email"
+msgstr ""
+
+#: functions.php:93
+msgctxt "comment-form"
+msgid "Website"
+msgstr ""
+
+#: functions.php:93
+msgctxt "comment-form"
+msgid "http://"
+msgstr ""
+
+#: functions.php:116
+msgid "Your comment here..."
+msgstr ""
+
+#: functions.php:116 functions.php:125
+msgid "Submit"
+msgstr ""
+
+#: functions.php:122
+msgid "This content is password protected. To view it please enter your password below."
+msgstr ""
+
+#: functions.php:123
+msgid "Password"
+msgstr ""
+
+#: functions.php:168
+msgid "Pingback"
+msgstr ""
+
+#: functions.php:183
+msgid "Reply"
+msgstr ""
+
+#: functions.php:184
+msgid "Edit"
+msgstr ""
+
+#: functions.php:188
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: page.php:9 single.php:9
+msgid "The content you're looking for does not exist."
+msgstr ""
+
+#: search.php:3
+msgid "Search &raquo; %s"
+msgstr ""
+
+#: searchform.php:3
+msgid "Search for..."
+msgstr ""
+
+#: searchform.php:5
+msgid "Search"
+msgstr ""
+
+#: sidebar.php:13
+msgid "Copyright"
+msgstr ""
+
+#: sidebar.php:14
+msgid "Themed by"
+msgstr ""
+
+#: sidebar.php:14
+msgid "SlimTheme.com"
+msgstr ""
+
+#: tag.php:3
+msgid "Tags &raquo; %s"
+msgstr ""
+#. Theme Name of the plugin/theme
+msgid "SlimWriter"
+msgstr ""
+
+#. Theme URI of the plugin/theme
+msgid "http://www.slimtheme.com/slimwriter/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "SlimWriter is designed to be a very slim and clean theme. It’s a very good choice for those who don’t need those fancy decorations and just want to write their articles in a clean and neat way."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Duan Zhiyan"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://zhiyan.de"
+msgstr ""
