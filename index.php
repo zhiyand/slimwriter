@@ -1,24 +1,21 @@
 <?php get_header();?>
-		<header>
-			<h1><?php bloginfo('name');?></h1>
-		</header>
-		<aside class="article-meta">
-			<p><?php bloginfo('description');?></p>
-		</aside>
-		<article>
+<div class="pane-primary concavebox">
+    <h1 class="pane-title"><?php bloginfo('name');?></h1>
+    <div class="pane-content">
+        <p><?php bloginfo('description');?></p>
+    </div>
+</div>
 <?php if(have_posts()): while(have_posts()) : the_post(); ?>
 
 <?php get_template_part('content', get_post_type());?>
 
 <?php endwhile; else:?>
 <?php endif;?>
-		</article>
-		<nav class="pager">
 
-<?php if(function_exists('wp_pagenavi')) : wp_pagenavi(); else: ?>
-			<div class="nav-prev"><?php next_posts_link( __( '<span class="meta-nav">&laquo;</span> Older posts', 'slimwriter' ) ); ?></div>
-			<div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&raquo;</span>', 'slimwriter' ) ); ?></div>
-<?php endif;?>
-		</nav>
+<ul class="pager">
+    <li class="previous"><?php next_posts_link('&laquo; '. _x('Older Posts', 'post navigation', 'slimwriter')); ?></li>
+    <li class="next"><?php previous_posts_link(_x('Newer Posts', 'post navigation', 'slimwriter') . ' &raquo;' ); ?></li>
+</ul>
+
 <?php get_sidebar();?>
 <?php get_footer();?>

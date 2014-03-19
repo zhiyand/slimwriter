@@ -23,7 +23,7 @@
 
     <ol class="commentlist">
         <?php
-            wp_list_comments( array( 'callback' => 'zd_SlimWriterTheme::comment') );
+            wp_list_comments( array( 'callback' => 'SlimWriterTheme::comment') );
         ?>
     </ol>
 
@@ -48,7 +48,7 @@
 
 
 <?php if ( comments_open() && ! is_page() && post_type_supports( get_post_type(), 'comments' ) ) :?>
-<div id="comments" class="concavebox clearfix pane"><div class="form-horizontal">
+<div class="concavebox clearfix pane"><div class="form-horizontal">
 <?php comment_form(array(
     'title_reply' => __('Join the discussion', 'slim'),
     'comment_notes_after' => '',

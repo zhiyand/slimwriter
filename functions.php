@@ -5,109 +5,157 @@ include( get_template_directory() . '/lib/agent.php' );
 
 if(!isset($content_width)) $content_width = '700';
 
-class zd_SlimWriterTheme{
+class SlimWriterTheme{
+    private $_actions = array(
+        'after_setup_theme',
+        'widgets_init',
+        'wp_enqueue_scripts',
+    );
+    private $_filters = array(
+        'comment_form_default_fields',
+        'comment_form_field_comment',
+        'the_password_form',
+        'embed_oembed_html',
+        'video_embed_html',
+    );
 
-	function __construct(){
+    function __construct(){
+        load_theme_textdomain('slimwriter', get_template_directory() . '/languages');
 
+        foreach($this->_actions as $action){
+            if(is_array($action)){
+                add_action($action[0], array($this, $action[0]), $action[1], $action[2]);
+            }else{
+                add_action($action, array($this, $action));
+            }
+        }
+        foreach($this->_filters as $filter){
+            if(is_array($filter)){
+                add_filter($filter[0], array($this, $filter[0]), $filter[1], $filter[2]);
+            }else{
+                add_filter($filter, array($this, $filter));
+            }
+        }
+    }
+    /* Actions */
+    function after_setup_theme(){
+        add_theme_support( 'post-thumbnails' );
+        add_theme_support( 'automatic-feed-links' );
+        add_image_size('-slimwriter-featured-big', 700, 250, true);
+        add_image_size('-slimwriter-featured-small', 140, 90, true);
 
-		add_filter('comment_form_default_fields', array( &$this, 'comment_fields') );
-		add_filter('the_title', array(&$this, 'title_filter'));
-		add_filter('wp_title', array(&$this, 'wp_title_filter'), 10, 3);
-		add_filter('embed_defaults', array(&$this, 'embed_defaults'));
-		add_filter('img_caption_shortcode_width', array($this, 'img_caption_shortcode_width'), 10, 3);
+        load_theme_textdomain('slimwriter', get_template_directory() . '/languages');
 
-		add_action('wp_enqueue_scripts', array(&$this, 'enqueue'));
-		add_action('admin_menu', array(&$this, 'admin_menu'));
-		add_action('admin_init', array(&$this, 'register_setting'));
-		add_action('after_setup_theme', array(&$this, 'after_setup_theme'));
+        register_nav_menu( 'primary', 'Primary' );
+    }
+    function widgets_init(){
+        foreach(self::$SIDEBARS as $sidebar){
+            register_sidebar($sidebar);
+        }
+    }
+    function wp_enqueue_scripts()
+    {
+        $theme_url = get_template_directory_uri(); //get_bloginfo('template_url');
+        wp_register_style('-slimwriter-bootstrap', $theme_url . '/static/css/bootstrap.min.css');
+        wp_register_style('-slimwriter-style', $theme_url . '/static/css/style.css');
+        //wp_register_style('-slimwriter-icon-font', $theme_url . '/static/css/icon-font/style.css');
+        wp_register_style('-slimwriter-fonts', 'http://fonts.googleapis.com/css?family=Raleway:300|Merriweather:300,700,300italic,700italic');
 
-		add_action('widgets_init', array(&$this, 'widgets_init'));
-	}
-	function after_setup_theme(){
-		add_theme_support( 'post-thumbnails' );
-		add_theme_support( 'automatic-feed-links' );
-		add_image_size('-slimwriter-featured-big', 700, 250, true);
-		add_image_size('-slimwriter-featured-small', 140, 90, true);
+        wp_enqueue_style('-slimwriter-fonts');
+        wp_enqueue_style('-slimwriter-bootstrap');
+        wp_enqueue_style('-slimwriter-style');
+        //wp_enqueue_style('-slimwriter-icon-font');
 
-		load_theme_textdomain('slimwriter', get_template_directory() . '/languages');
+        $browser = zd_slimwriter_parseUserAgent($_SERVER['HTTP_USER_AGENT']);
 
-		register_nav_menu( 'primary', 'Primary' );
-	}
-	function widgets_init(){
-		foreach(self::$SIDEBARS as $sidebar){
-			register_sidebar($sidebar);
-		}
-	}
+        if($browser[0] == 'MSIE' && $browser[1] < 9){
+            wp_register_style('-slimwriter-lt-ie9', $theme_url . '/static/css/lt-ie9.css');
+            wp_enqueue_style('-slimwriter-lt-ie9');
 
-	function img_caption_shortcode_width($caption_width, $atts, $content){
-		return $caption_width -10;
-	}
-	function title_filter($title){
-		if(trim($title) == ''){
-			return '(No Title)';
-		}
-		return $title;
-	}
-	function wp_title_filter($title, $sep = '', $position = ''){
-		if(is_single() && trim($title) == ''){
-			$title = '(No Title)';
-		}
+            wp_register_script('-slimwriter-lt-ie9-html5', $theme_url . '/static/js/html5shiv.js');
+            wp_register_script('-slimwriter-lt-ie9-css3', $theme_url . '/static/js/css3-mediaqueries.js');
+            wp_enqueue_script('-slimwriter-lt-ie9-html5');
+            wp_enqueue_script('-slimwriter-lt-ie9-css3');
+        }
 
-		if( is_category() ) $type = 'Category';
-		elseif( is_tag() ) $type = 'Tag';
-		elseif( is_author() ) $type . 'Author';
-		elseif( is_date() || is_archive() ) $type = 'Archives';
-		else $type = false;
+        if ( is_admin_bar_showing() ){
+            wp_register_style('-slimwriter-admin-bar', $theme_url . '/static/css/admin-bar.css');
+            wp_enqueue_style('-slimwriter-admin-bar');
+        }
+    }
 
-		if( get_query_var( 'paged' ) ) {
-			$page_num = 'Page ' . get_query_var( 'paged' ); // on index
-		}elseif( get_query_var( 'page' ) ) {
-			$page_num = 'Page ' . get_query_var( 'page' ); // on single
-		}else { $page_num = false; }
+    /* Filters */
+    function comment_form_default_fields($fields)
+    {
+        $fields = array(
+            '<div class="form-group"><label class="col-sm-2 control-label" for="reply-author">'._x('Name','comment-form','slim' ).' <span class="required">*</span></label><div class="col-sm-10"><input class="form-control" placeholder="'._x('Name', 'comment-form', 'slim').'" id="reply-author" name="author" type="text" value="" size="30" aria-required="true" /></div></div>',
+            '<div class="form-group"><label class="col-sm-2 control-label" for="reply-email">'._x('Email', 'comment-form', 'slim').' <span class="required">*</span></label><div class="col-sm-10"><input class="form-control" placeholder="'._x('Email', 'comment-form', 'slim').'" id="reply-email" name="email" type="text" value="" size="30" aria-required="true" /></div></div>',
+            '<div class="form-group"><label class="col-sm-2 control-label" for="reply-url">'._x('Website', 'comment-form', 'slim').'</label><div class="col-sm-10"><input id="reply-url" class="form-control" name="url" type="text" value="" size="30" placeholder="'._x('http://', 'comment-form', 'slim').'" /></div></div>',
+        );
 
-		$title = trim( str_replace( $sep, '', $title ) );
+        return $fields;
+    }
+    function comment_form_field_comment(){
+        $current_user = wp_get_current_user();
+        if ( ($current_user instanceof WP_User) ) {
+            $id = $current_user->ID;
+            $avatar = get_avatar( $current_user->user_email, 75 );
+        }
+        $label = $id > 0 ? $avatar : '<span class="required">*</span>';'</span>';
 
-		if( $position == 'right' ){
-			$parts = array( $title, $page_num, $type, get_bloginfo( 'name' ) );
-		}else{
-			$parts = array( get_bloginfo( 'name' ), $type, $title, $page_num );
-		}
+        return sprintf('<div class="form-group">
+        <label class="col-sm-2 control-label">%1$s</label>
+        <div class="col-sm-10">
+        <textarea placeholder="%2$s" id="comment" class="form-control" name="comment" cols="45" rows="8" aria-required="true"></textarea>
+        </div></div>
+        <div class="form-group">
+        <label class="col-sm-2"></label>
+        <div class="col-sm-10">
+        <input type="submit" class="btn btn-success" value="Submit" />
+        </div>
+        </div>', $label, __('Your comment here...', 'slim'));
+    }
+    function the_password_form(){
+        global $post;
+            $label = 'pwbox-'.( empty( $post->ID ) ? rand() : $post->ID );
+            $o = '<form class="form form-horizontal" action="' . get_option('siteurl') . '/wp-pass.php" method="post"><p>'
+                . __( "This content is password protected. To view it please enter your password below.", 'slim' ) . '</p><div class="input-group">' .
+            '<span class="input-group-addon" for="'.$label.'">'. __("Password", 'slim').'</span>'.
+            '<input name="post_password" id="' . $label . '" type="password" class="form-control" />'.
+            '<span class="input-group-btn"><input type="submit" name="Submit" class="btn btn-default" value="' . esc_attr__( "Submit" ) . '" /></span>'.
+            '</div></form>';
+            return $o;
+    }
 
-		$parts = array_filter( $parts );
+    function embed_oembed_html($html){
+        return $this->_video_embed($html);
+    }
+    function video_embed_html($html){
+        return $this->_video_embed($html);
+    }
+    function _video_embed($html){
+        return '<div class="video-container">' . $html . '</div>';
+    }
 
-		return implode( ' ' . $sep . ' ', $parts );
-	}
+    static $SIDEBARS = array(
+    array(
+        'name'          => 'Left Sidebar',
+        'id'            => 'sidebar-left',
+        'description'   => 'The sidebar on the left part of the page.',
+        'before_widget' => '<div id="%1$s" class="widget %2$s pane pane-dark">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h3 class="pane-title">',
+        'after_title'   => '</h3>' ),
 
-	function enqueue()
-	{
-		$theme_url = get_template_directory_uri(); //get_bloginfo('template_url');
-		wp_register_style('-slimwriter-bootstrap', $theme_url . '/static/css/bootstrap.min.css');
-		wp_register_style('-slimwriter-style', $theme_url . '/static/css/style.css');
-		//wp_register_style('-slimwriter-icon-font', $theme_url . '/static/css/icon-font/style.css');
-		wp_register_style('-slimwriter-fonts', 'http://fonts.googleapis.com/css?family=Raleway:300|Merriweather:300,700,300italic,700italic');
-
-		wp_enqueue_style('-slimwriter-fonts');
-		wp_enqueue_style('-slimwriter-bootstrap');
-		wp_enqueue_style('-slimwriter-style');
-		//wp_enqueue_style('-slimwriter-icon-font');
-
-		$browser = zd_slimwriter_parseUserAgent($_SERVER['HTTP_USER_AGENT']);
-
-		if($browser[0] == 'MSIE' && $browser[1] < 9){
-			wp_register_style('-slimwriter-lt-ie9', $theme_url . '/static/css/lt-ie9.css');
-			wp_enqueue_style('-slimwriter-lt-ie9');
-
-			wp_register_script('-slimwriter-lt-ie9-html5', $theme_url . '/static/js/html5shiv.js');
-			wp_register_script('-slimwriter-lt-ie9-css3', $theme_url . '/static/js/css3-mediaqueries.js');
-			wp_enqueue_script('-slimwriter-lt-ie9-html5');
-			wp_enqueue_script('-slimwriter-lt-ie9-css3');
-		}
-
-		if ( is_admin_bar_showing() ){
-			wp_register_style('-slimwriter-admin-bar', $theme_url . '/static/css/admin-bar.css');
-			wp_enqueue_style('-slimwriter-admin-bar');
-		}
-	}
+    array(
+        'name'          => 'Right Sidebar',
+        'id'            => 'sidebar-right',
+        'description'   => 'The sidebar on the right part of the page.',
+        'before_widget' => '<div id="%1$s" class="widget %2$s pane pane-dark">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h3 class="pane-title">',
+        'after_title'   => '</h3>' ),
+    );
 
     static function comment($comment, $args, $depth)
     {
@@ -123,7 +171,7 @@ class zd_SlimWriterTheme{
                 break;
             default :
         ?>
-        <li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
+        <li <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
                 <div class="vcard"> <?php echo get_avatar( $comment, 48 ); ?> </div>
 
                 <div class="text">
@@ -149,91 +197,9 @@ class zd_SlimWriterTheme{
                 break;
         endswitch;
     }
-	function comment_fields($fields)
-	{
-		$fields = array(
-			sprintf('<p class="field"><input placeholder="%s" id="author" name="author" type="text" value="" size="30" aria-required="true" /><span class="required">*</span><small>%s</small></p>', __('Name', 'slimwriter'), __('Name', 'slimwriter') ),
-			sprintf('<p class="field"><input placeholder="%s" id="email" name="email" type="text" value="" size="30" aria-required="true" /><span class="required">*</span><small>%s</small></p>', __('Email', 'slimwriter'), __('Email', 'slimwriter')),
-			sprintf('<p class="field"><input id="url" name="url" type="text" value="" size="30" placeholder="%s" /><small>%s</small></p>', __('Website', 'slimwriter'), __('Website', 'slimwriter')),
-		);
-
-		return $fields;
-	}
-
-	function admin_menu(){
-		add_theme_page( __('SlimWriter Options', 'slimwriter'),
-			__('SlimWriter Options', 'slimwriter'),
-			'edit_theme_options',
-			'slimwriter',
-			array(&$this, 'options_page'));
-	}
-	function options_page(){
-		$setting = get_option('_slimwriter_', array(
-			'logo' => get_template_directory_uri() . '/static/images/logo.png',
-		));
-?>
-<div class="wrap">
-	<div id="icon-options-general" class="icon32"><br></div>
-	<h2>SlimWriter Theme Settings</h2>
-	<?php settings_errors(); ?>
-<div id="slimwriter">
-	<form method="post" action="options.php">
-	<?php settings_fields( 'slimwriter' );?>
-<table class="form-table">
-	<tr>
-		<th scope="row">Logo URL</th>
-		<td><input type="text" name="_slimwriter_[logo]" value="<?php esc_attr_e($setting['logo'])?>" class="regular-text" />
-		<p class="description">Recommended resolution: 160x40, with transparent background.</p>
-		</td>
-	</tr>
-</table>
-<p class="submit"><input type="submit" name="submit" id="submit" class="button-primary"	 value="<?php _e('Save Changes', 'slimwriter'); ?>" />
-	</form>
-</div>
-</div><!-- #wrap -->
-<?php
-	}
-
-	function register_setting(){
-		register_setting('slimwriter', '_slimwriter_', array(&$this, 'sanitize_setting'));
-	}
-	function sanitize_setting($input){
-		$setting = get_option('_slimwriter_');
-
-		$input['logo'] = esc_url_raw($input['logo'], array('http', 'https'));
-
-		return $input;
-	}
-
-	function embed_defaults($size){
-		$size['width'] = 652;
-		$size['height'] = 652 * .75;
-		return $size;
-	}
-
-	static $SIDEBARS = array(
-	array(
-		'name'          => 'Left Sidebar',
-		'id'            => 'sidebar-left',
-		'description'   => 'The sidebar on the left part of the page.',
-		'before_widget' => '<section id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</section>',
-		'before_title'  => '<h4 class="widgettitle">',
-		'after_title'   => '</h4>' ),
-
-	array(
-		'name'          => 'Right Sidebar',
-		'id'            => 'sidebar-right',
-		'description'   => 'The sidebar on the right part of the page.',
-		'before_widget' => '<section id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</section>',
-		'before_title'  => '<h4 class="widgettitle">',
-		'after_title'   => '</h4>' ),
-	);
-
 };
 
-$zd_slimwriter = new zd_SlimWriterTheme();
+$slimwriter = new SlimWriterTheme();
 
 
 ?>

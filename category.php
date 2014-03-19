@@ -1,6 +1,6 @@
 <?php get_header();?>
 <div class="pane-primary concavebox">
-    <h1 class="pane-title"><?php printf( __( 'Search &raquo; %s', 'slimwriter' ), get_search_query() ); ?></h1>
+    <h1 class="pane-title"><?php printf( __( 'Categories &raquo; %s', 'slimwriter' ), single_cat_title('', false) ); ?></h1>
     <?php $term_description = term_description();?>
     <?php if(!empty($term_description)): ?>
     <div class="pane-content">
