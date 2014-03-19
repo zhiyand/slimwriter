@@ -1,7 +1,7 @@
 <?php
 
 include( get_template_directory() . '/lib/agent.php' );
-
+include( get_template_directory() . '/lib/SlimWriterOptions.class.php' );
 
 if(!isset($content_width)) $content_width = '700';
 
@@ -18,6 +18,7 @@ class SlimWriterTheme{
         'embed_oembed_html',
         'video_embed_html',
     );
+    private $opt = null;
 
     function __construct(){
         load_theme_textdomain('slimwriter', get_template_directory() . '/languages');
@@ -36,6 +37,8 @@ class SlimWriterTheme{
                 add_filter($filter, array($this, $filter));
             }
         }
+
+        $this->opt = new SlimWriterOptions();
     }
     /* Actions */
     function after_setup_theme(){
@@ -196,6 +199,10 @@ class SlimWriterTheme{
         <?php
                 break;
         endswitch;
+    }
+
+    static function options(){
+        return get_option('slimwriter_theme_options');
     }
 };
 

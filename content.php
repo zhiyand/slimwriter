@@ -31,9 +31,10 @@ $_slimwriter_nail = get_the_post_thumbnail( get_the_ID(),  '-slimwriter-featured
 
     </div><!-- .entry -->
     <div class="entry-footer">
-        <p><?php _e('Categories', 'slimwriter');?></span> : <?php the_category(', ');?><br/>
-<?php the_tags(sprintf("%s : ", __('Tags', 'slimwriter'))); ?>
+        <p><?php _e('Categories', 'slimwriter');?></span> : <?php the_category(', ');?>
             <a class="pull-right" href="<?php the_permalink(); ?>"><span class="glyphicon glyphicon-link"></span></a>
+<br/>
+<?php the_tags(sprintf("%s : ", __('Tags', 'slimwriter'))); ?>
         </p>
     </div>
 </div><!-- .concavebox -->

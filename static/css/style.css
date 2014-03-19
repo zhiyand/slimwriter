@@ -160,7 +160,18 @@ h3#reply-title,
 
 .post, .hentry{
     margin-bottom:20px;
+    position:relative;
 }
+
+.hentry .icon{
+    display:none;
+}
+.hentry.sticky p.byline:before{
+    content: "\e146";
+    font-family: 'Glyphicons Halflings';
+    padding-right:15px;
+}
+
 .post .featured-img img{
     border-radius:5px 5px 0 0;
 }

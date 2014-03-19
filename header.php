@@ -6,7 +6,7 @@
 
     <title><?php wp_title('&laquo;', true, 'right'); bloginfo('name'); ?></title>
 <?php
-$slimwriter_setting = get_option('_slimwriter_');
+$slimwriter_setting = SlimWriterTheme::options();
 $slimwriter_theme_url = get_template_directory_uri();
 
 $slimwriter_logo = $slimwriter_setting['logo']
