@@ -160,6 +160,8 @@ class SlimWriterTheme{
         'after_title'   => '</h3>' ),
     );
 
+    /* Only open & display comment
+     * don't close the tag 'cause WordPress will do it automatically. */
     static function comment($comment, $args, $depth)
     {
         $GLOBALS['comment'] = $comment;
@@ -178,7 +180,7 @@ class SlimWriterTheme{
                 <div class="vcard"> <?php echo get_avatar( $comment, 48 ); ?> </div>
 
                 <div class="text">
-                <div class="date">
+                <div class="date"><p>
 <?php printf( '<span class="fn">%s</span> ', get_comment_author_link() ); ?>
 <?php printf( '<time pubdate datetime="%1$s">%2$s</time> ',
     get_comment_time( 'c' ),
@@ -194,7 +196,6 @@ class SlimWriterTheme{
 
                 </div>
                 <div class="clearfix"></div>
-            </li><!-- #comment-## -->
 
         <?php
                 break;
