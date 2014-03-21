@@ -180,8 +180,8 @@ class SlimWriterTheme{
             'itemtag'    => 'div',
             'icontag'    => 'div',
             'captiontag' => 'p',
-            'columns'    => 2,
-            'size'       => '-slimwriter-gallery-medium',
+            'columns'    => 3,
+            'size'       => '-slimwriter-gallery-small',
             'include'    => '',
             'exclude'    => '',
             'link'       => ''
