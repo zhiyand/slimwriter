@@ -338,9 +338,6 @@ div.entry .featured-img img{
 	margin:0 0 10px 10px;
 	float:right;}
 
-.gallery-item img{
-	margin:0 auto;
-}
 
 .page-link{
 	clear:both;
@@ -473,7 +470,16 @@ aside .half img{
     margin:5px;
 }
 .wp-caption-text{ text-align: center; margin-bottom:0; }
+.gallery{
+    margin-bottom:1em;
+}
 .gallery-caption{ text-align: center; }
+.gallery-item img{
+	margin:0 auto;
+}
+.gallery-icon:last-child{
+    margin-bottom:10px;
+}
 .sticky{}
 
 
