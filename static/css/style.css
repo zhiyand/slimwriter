@@ -467,7 +467,7 @@ aside .half img{
 	font-style:italic;
 }
 .wp-caption img{
-    margin:5px;
+    margin:5px 0;
 }
 .wp-caption-text{ text-align: center; margin-bottom:0; }
 .gallery{

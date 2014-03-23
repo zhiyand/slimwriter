@@ -17,6 +17,7 @@ class SlimWriterTheme{
         'the_password_form',
         'embed_oembed_html',
         'video_embed_html',
+        array('img_caption_shortcode_width', 10, 3),
         array('post_gallery', 10, 2),
     );
     private $opt = null;
@@ -142,6 +143,9 @@ class SlimWriterTheme{
     }
     function _video_embed($html){
         return '<div class="video-container">' . $html . '</div>';
+    }
+    function img_caption_shortcode_width($caption_width, $atts, $content){
+        return $caption_width -10;
     }
     /**
      * The Gallery shortcode.
