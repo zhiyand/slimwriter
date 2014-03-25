@@ -15,12 +15,11 @@ class SlimWriterTheme{
         'comment_form_default_fields',
         'comment_form_field_comment',
         'the_password_form',
-        'embed_oembed_html',
+        array('embed_oembed_html', 10, 4),
         'video_embed_html',
         array('img_caption_shortcode_width', 10, 3),
         array('post_gallery', 10, 2),
     );
-    private $opt = null;
 
     function __construct(){
         load_theme_textdomain('slimwriter', get_template_directory() . '/languages');
@@ -39,8 +38,6 @@ class SlimWriterTheme{
                 add_filter($filter, array($this, $filter));
             }
         }
-
-        $this->opt = new SlimWriterOptions();
     }
     /* Actions */
     function after_setup_theme(){
@@ -51,6 +48,15 @@ class SlimWriterTheme{
         add_image_size('-slimwriter-gallery-full', 660, 408, true);
         add_image_size('-slimwriter-gallery-medium', 330, 204, true);
         add_image_size('-slimwriter-gallery-small', 220, 136, true);
+
+        $args = array(
+            'width'         => 320,
+            'height'        => 90,
+            'default-image' => get_template_directory_uri() . '/static/images/logo.png',
+            'header-text'   => false,
+            'uploads'       => true,
+        );
+        add_theme_support( 'custom-header', $args );
 
         load_theme_textdomain('slimwriter', get_template_directory() . '/languages');
 
@@ -63,32 +69,28 @@ class SlimWriterTheme{
     }
     function wp_enqueue_scripts()
     {
-        $theme_url = get_template_directory_uri(); //get_bloginfo('template_url');
+        global $wp_styles;
+
+        $theme_url = get_template_directory_uri();
         wp_register_style('-slimwriter-bootstrap', $theme_url . '/static/css/bootstrap.min.css');
         wp_register_style('-slimwriter-style', $theme_url . '/static/css/style.css');
-        //wp_register_style('-slimwriter-icon-font', $theme_url . '/static/css/icon-font/style.css');
-        wp_register_style('-slimwriter-fonts', 'http://fonts.googleapis.com/css?family=Raleway:300|Merriweather:300,700,300italic,700italic');
+        wp_register_style('-slimwriter-fonts', '//fonts.googleapis.com/css?family=Raleway:300');
 
         wp_enqueue_style('-slimwriter-fonts');
         wp_enqueue_style('-slimwriter-bootstrap');
         wp_enqueue_style('-slimwriter-style');
-        //wp_enqueue_style('-slimwriter-icon-font');
+
+        wp_register_style('-slimwriter-ie8', $theme_url . '/static/css/lt-ie9.css');
+        wp_enqueue_style('-slimwriter-ie8');
+        $wp_styles->add_data( '-slimwriter-ie8', 'conditional', 'lte IE 8' );
 
         $browser = zd_slimwriter_parseUserAgent($_SERVER['HTTP_USER_AGENT']);
 
         if($browser[0] == 'MSIE' && $browser[1] < 9){
-            wp_register_style('-slimwriter-lt-ie9', $theme_url . '/static/css/lt-ie9.css');
-            wp_enqueue_style('-slimwriter-lt-ie9');
-
-            wp_register_script('-slimwriter-lt-ie9-html5', $theme_url . '/static/js/html5shiv.js');
-            wp_register_script('-slimwriter-lt-ie9-css3', $theme_url . '/static/js/css3-mediaqueries.js');
-            wp_enqueue_script('-slimwriter-lt-ie9-html5');
-            wp_enqueue_script('-slimwriter-lt-ie9-css3');
-        }
-
-        if ( is_admin_bar_showing() ){
-            wp_register_style('-slimwriter-admin-bar', $theme_url . '/static/css/admin-bar.css');
-            wp_enqueue_style('-slimwriter-admin-bar');
+            wp_register_script('-slimwriter-ie8-html5', $theme_url . '/static/js/html5shiv.js');
+            wp_register_script('-slimwriter-ie8-css3', $theme_url . '/static/js/css3-mediaqueries.js');
+            wp_enqueue_script('-slimwriter-ie8-html5');
+            wp_enqueue_script('-slimwriter-ie8-css3');
         }
     }
 
@@ -135,7 +137,14 @@ class SlimWriterTheme{
             return $o;
     }
 
-    function embed_oembed_html($html){
+    function embed_oembed_html($html, $url, $attr, $post_ID){
+        list($proto, $extra) = explode('//', $url);
+        list($domain, $uri) = explode('/', $extra);
+
+        if(in_array($domain, array('twitter.com'))){
+            return $html;
+        }
+
         return $this->_video_embed($html);
     }
     function video_embed_html($html){
@@ -367,13 +376,6 @@ class SlimWriterTheme{
                 break;
         endswitch;
     }
-
-    static function options(){
-        return get_option('slimwriter_theme_options');
-    }
 };
 
 $slimwriter = new SlimWriterTheme();
-
-
-?>

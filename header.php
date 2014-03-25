@@ -6,13 +6,10 @@
 
     <title><?php wp_title('&laquo;', true, 'right'); bloginfo('name'); ?></title>
 <?php
-$slimwriter_setting = SlimWriterTheme::options();
-$slimwriter_theme_url = get_template_directory_uri();
-
-$slimwriter_logo = $slimwriter_setting['logo']
-    ? ('<img src="'. esc_url($slimwriter_setting['logo']). '" />' )
+$slimwriter_logo = get_header_image();
+    $slimwriter_logo = $slimwriter_logo
+    ? ('<img src="'. esc_url($slimwriter_logo). '" />' )
     : get_bloginfo('name');
-
 ?>
 
     <?php
