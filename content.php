@@ -25,7 +25,7 @@ $_slimwriter_nail = get_the_post_thumbnail( get_the_ID(),  '-slimwriter-featured
     </div>
     <div class="entry">
 
-    <?php the_content(); ?>
+    <?php the_content('Continue Reading &raquo;'); ?>
 
     <?php wp_link_pages( array( 'before' => '<div class="page-link"><span>' . __( 'Pages:', 'slimwriter' ) . '</span>', 'after' => '</div>' ) ); ?>
 
