@@ -411,6 +411,9 @@ nav.main ul li ul {
 .commentlist li:last-child {
   padding-bottom: 0; }
 
+.commentlist li.bypostauthor {
+  border-right: 3px solid #eee; }
+
 .commentlist ul.children {
   padding-top: 20px; }
 
@@ -475,7 +478,7 @@ aside .half img {
   #comments ol li .vcard {
     float: none; }
   #comments ol li .text {
-    margin-left: 0; }
+    padding-left: 0; }
   #btn-mobile-menu-toggle {
     display: block; }
   #nav {
@@ -487,5 +490,33 @@ aside .half img {
     border-bottom: 1px solid #eee; }
   .post .featured-img img {
     border-radius: 0; } }
+
+/* Text meant only for screen readers. */
+.screen-reader-text {
+  clip: rect(1px, 1px, 1px, 1px);
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden; }
+
+.screen-reader-text:focus {
+  background-color: #f1f1f1;
+  border-radius: 3px;
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+  clip: auto !important;
+  color: #21759b;
+  display: block;
+  font-size: 14px;
+  font-size: 0.875rem;
+  font-weight: bold;
+  height: auto;
+  left: 5px;
+  line-height: normal;
+  padding: 15px 23px 14px;
+  text-decoration: none;
+  top: 5px;
+  width: auto;
+  z-index: 100000;
+  /* Above WP toolbar. */ }
 
 /*# sourceMappingURL=style.css.map */

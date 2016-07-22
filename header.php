@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title><?php wp_title('&laquo;', true, 'right'); bloginfo('name'); ?></title>
+    <title><?php wp_title('&laquo;', true, 'right'); ?></title>
 <?php
 $slimwriter_logo = get_header_image();
     $slimwriter_logo = $slimwriter_logo

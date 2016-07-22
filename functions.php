@@ -12,6 +12,7 @@ class SlimWriterTheme{
         'wp_enqueue_scripts',
     );
     private $_filters = array(
+        'wp_title',
         'comment_form_default_fields',
         'comment_form_field_comment',
         'the_password_form',
@@ -41,6 +42,7 @@ class SlimWriterTheme{
     }
     /* Actions */
     function after_setup_theme(){
+        add_theme_support( 'title-tag' );
         add_theme_support( 'post-thumbnails' );
         add_theme_support( 'automatic-feed-links' );
         add_image_size('-slimwriter-featured-big', 700, 250, true);
@@ -98,6 +100,11 @@ class SlimWriterTheme{
     }
 
     /* Filters */
+    function wp_title($title, $sep, $seplocation)
+    {
+        return $title . get_bloginfo('name');
+    }
+
     function comment_form_default_fields($fields)
     {
         $fields = array(

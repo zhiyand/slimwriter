@@ -19,7 +19,7 @@ $_slimwriter_nail = get_the_post_thumbnail( get_the_ID(),  '-slimwriter-featured
 
 
 	<?php the_content();?>
-	<?php wp_link_pages( array( 'before' => '<div class="page-link"><span>' . __( 'Pages:', 'slimcoder' ) . '</span>', 'after' => '</div>' ) ); ?>
+	<?php wp_link_pages( array( 'before' => '<div class="page-link"><span>' . __( 'Pages:', 'slimwriter' ) . '</span>', 'after' => '</div>' ) ); ?>
 
     </div><!-- .entry -->
     <div class="entry-footer">
