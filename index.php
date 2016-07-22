@@ -1,10 +1,5 @@
 <?php get_header();?>
-<div class="pane-primary concavebox">
-    <h1 class="pane-title"><?php bloginfo('name');?></h1>
-    <div class="pane-content">
-        <p><?php bloginfo('description');?></p>
-    </div>
-</div>
+
 <?php if(have_posts()): while(have_posts()) : the_post(); ?>
 
 <?php get_template_part('content', get_post_type());?>

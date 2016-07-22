@@ -1,0 +1,33 @@
+/* Responsive */
+
+@media screen and (min-width: 700px)
+{
+	#wrap{ width:700px; }
+	#nav nav{ width:700px; }
+}
+@media screen and (max-width: 400px) {
+	#comments ol li .vcard{ float:none; }
+	#comments ol li .text{ margin-left:0; }
+
+    #btn-mobile-menu-toggle{
+        display:block;
+    }
+
+    #nav{
+        display:none;
+    }
+
+    .concavebox{
+        border-radius:0;
+    }
+
+    .hentry{
+        margin-bottom:0;
+        border-bottom: 1px solid #eee;
+    }
+
+    .post .featured-img img{
+        border-radius: 0;
+    }
+}
+

@@ -14,4 +14,3 @@ function zd_slimwriter_parseUserAgent($ua)
 	
 	return $browser;
 }
-?>

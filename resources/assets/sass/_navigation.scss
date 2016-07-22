@@ -1,0 +1,130 @@
+#branding{
+    padding:20px 0;
+    text-align:center;
+    width:100%;
+    max-width: inherit;
+    z-index: 99;
+
+    img{
+        display:inline-block;
+        height:45px;
+    }
+}
+
+nav.main{
+	background:#fff;
+	width:100%;
+	margin:0 auto 20px;
+	border-radius:5px;
+	height:45px;
+}
+nav.main ul{
+	margin:0;
+	padding:0 1em;
+	text-indent:0;
+	height:45px;
+	overflow:hidden;
+    text-align:center;
+}
+nav.main ul li{
+    display:inline-block;
+	list-style:none;
+	padding:0;
+}
+nav.main ul li a{
+	line-height:45px;
+	padding:0 0.8em;
+	display:block;
+	text-decoration:none;
+}
+nav.main ul li a:link{
+}
+
+nav.main ul li.current-menu-item a,
+nav.main ul li a:hover{
+	border-top:2px solid transparent;
+	border-bottom:2px solid #fc0;
+	line-height: 41px;
+}
+
+nav.main ul li ul{
+	display:none;
+}
+
+
+#btn-mobile-menu-toggle{
+    display:none;
+    position:absolute;
+    right:5px;
+    top:25px;
+    width:35px;
+    height:35px;
+    text-align:center;
+    line-height:35px;
+    color:#666;
+    background: white;
+    margin:0;
+    padding:0;
+    border:none;
+    border-radius:2px;
+    font-size:18px;
+    outline:none;
+
+    &:before{
+        font-family: 'Glyphicons Halflings';
+        content: "\e012";
+    }
+}
+
+#mobile-nav{
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 240px;
+    height: 100%;
+    display: none;
+    background: $dark_background;
+    box-shadow: inset -3px 0 3px rgba(0, 0, 0, 0.25);
+
+    ul{
+        list-style:none;
+        padding:0;
+        li{
+            & > a{
+                display:block;
+                color: #fff;
+                text-decoration:none;
+                padding: .75rem 1rem;
+            }
+
+            &.current-menu-item > a{
+                background: darken($dark_background, 5%);
+            }
+        }
+    }
+}
+
+/** Animation **/
+#wrap {
+    position: relative;
+}
+
+#wrap.menu-visible{
+    right: 240px;
+}
+
+#wrap.animating {
+    transition: transform .25s ease-in-out;
+}
+
+#wrap.animating.left{
+    transform: translate3d(-240px, 0, 0);
+}
+
+#wrap.animating.right{
+    transform: translate3d(240px, 0, 0);
+}
+
+.pager a{
+    font-size:0.875em; /* 14px */
+}

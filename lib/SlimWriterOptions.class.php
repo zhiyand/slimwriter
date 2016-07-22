@@ -97,5 +97,3 @@ class SlimWriterOptions
     <?php
     }
 };
-
-?>

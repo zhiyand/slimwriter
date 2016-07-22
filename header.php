@@ -18,9 +18,16 @@ $slimwriter_logo = get_header_image();
     ?>
 </head>
 <body <?php body_class();?>>
+    <div id="mobile-nav">
+        <?php wp_nav_menu( $slimwriter_primary_menu ); ?>
+    </div>
+
     <div id="wrap">
-        <div id="nav"><nav>
+        <div id="branding">
             <a id="logo" href="<?php echo esc_url(home_url());?>"><?php echo $slimwriter_logo; ?></a>
+            <button id="btn-mobile-menu-toggle"></button>
+        </div>
+        <div id="nav"><nav class="main">
 <?php
 $slimwriter_primary_menu = array(
 

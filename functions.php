@@ -92,6 +92,9 @@ class SlimWriterTheme{
             wp_enqueue_script('-slimwriter-ie8-html5');
             wp_enqueue_script('-slimwriter-ie8-css3');
         }
+
+        wp_register_script('-slimwriter-menu', $theme_url . '/static/js/menu.js');
+        wp_enqueue_script('-slimwriter-menu');
     }
 
     /* Filters */
@@ -320,18 +323,18 @@ class SlimWriterTheme{
         'name'          => 'Left Sidebar',
         'id'            => 'sidebar-left',
         'description'   => 'The sidebar on the left part of the page.',
-        'before_widget' => '<div id="%1$s" class="widget %2$s pane pane-dark">',
+        'before_widget' => '<div id="%1$s" class="widget %2$s">',
         'after_widget'  => '</div>',
-        'before_title'  => '<h3 class="pane-title">',
+        'before_title'  => '<h3 class="widget-title">',
         'after_title'   => '</h3>' ),
 
     array(
         'name'          => 'Right Sidebar',
         'id'            => 'sidebar-right',
         'description'   => 'The sidebar on the right part of the page.',
-        'before_widget' => '<div id="%1$s" class="widget %2$s pane pane-dark">',
+        'before_widget' => '<div id="%1$s" class="widget %2$s">',
         'after_widget'  => '</div>',
-        'before_title'  => '<h3 class="pane-title">',
+        'before_title'  => '<h3 class="widget-title">',
         'after_title'   => '</h3>' ),
     );
 

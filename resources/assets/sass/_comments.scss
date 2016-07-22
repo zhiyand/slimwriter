@@ -1,0 +1,117 @@
+/* Comments */
+
+#comments{
+    margin-bottom:20px;
+}
+.commentlist{
+    margin-left:0;
+    padding-left:0;
+    -ms-word-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.commentlist ul,
+.commentlist ol{
+    margin-left:0;
+    padding-left:60px;
+    list-style:none;
+}
+
+.commentlist li{
+    position:relative;
+    list-style:none;
+    padding:20px 0 0;
+}
+.commentlist li .vcard{
+    float:left;
+}
+.commentlist li .vcard img{
+    border-radius:50px;
+}
+.commentlist li .text{
+    padding-left:60px;
+}
+.commentlist li time{
+    font-size:75%;
+    color:#999;
+}
+.commentlist li .date .fn a{
+    font-size:1em;
+}
+.commentlist li .date a{
+    font-size:.75em;
+    color:#999;
+}
+.commentlist li .date a:hover{
+    text-decoration:none;
+    color:#333;
+}
+.commentlist li:first-child{
+    padding-top:0;
+}
+.commentlist li:last-child{
+    padding-bottom:0;
+}
+.commentlist li.bypostauthor{
+}
+.commentlist li .clearfix{
+}
+
+.commentlist ul.children{
+    padding-top:20px;
+}
+
+.commentlist li .text ul,
+.commentlist li .text ol{
+    padding:1em 2em;
+}
+.commentlist li .text ul li{
+    list-style-type:disc;
+}
+.commentlist li .text ol li{
+    list-style-type:decimal;
+}
+.commentlist li .text li{
+    padding:0;
+}
+
+h3#reply-title{
+    margin-top:0;
+}
+.form-submit{
+    display:none;
+}
+#commentform .form-group label img{
+    border-radius:75px;
+    margin-top:-7px;
+}
+#commentform .form-group:last-of-type{
+    margin-bottom:0;
+}
+
+
+aside .half{
+	width:50%;
+	float:left;
+	margin:0;padding:0;
+	overflow:hidden;
+}
+aside section{
+	padding:0 .5em;
+}
+aside .half select,
+aside .half img{
+	max-width:100%;
+}
+
+.comment-nav{
+	height:2.5em;
+	line-height:2.5em;
+}
+.comment-nav .nav-previous{
+	float:left;
+}
+.comment-nav .nav-next{
+	float:right;
+}
+
