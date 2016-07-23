@@ -1,9 +1,9 @@
 === SlimWriter ===
 Contributors: dzy0451
 Donate link: http://www.slimtheme.com/slimwriter/
-Tags: black, gray, white, one-column, fixed-layout,responsive-layout,custom-menu,featured-images,sticky-post,threaded-comments
+Tags: one-column, fixed-layout,responsive-layout,custom-menu,featured-images,sticky-post,threaded-comments
 Requires at least: 3.0.2
-Tested up to: 3.8
+Tested up to: 4.5.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,7 +15,7 @@ There sure are a lot of fancy WordPress themes out there, but when I try to find
 
 So, I decided to create such a theme on my own. I name it SlimWriter because I want it to be slim. It should be a very clean and elegant theme where there’s no fancy decorations that would distract the readers. No annoying sliders, graphics etc. I believe blogging is all about writing articles, create useful contents. So, SlimWriter is aimed to be friendly to both the writers, and the readers. So that the writers can create contents with value and the readers can get useful information without any disturbance.
 
-SlimWriter is a slim theme, but at the same time, it is feature-rich too. Here is a brief list: 
+SlimWriter is a slim theme, but at the same time, it is feature-rich too. Here is a brief list:
 
 * Small & Fast
 * Clean & Neat
@@ -38,7 +38,6 @@ SlimWriter is a slim theme, but at the same time, it is feature-rich too. Here i
 
 1. The main navigation menu does not support dropdown
 2. The main navigation menu can display 4-5 items at most
-3. The site title/logo area is 175px wide, and thus may cause display issues for sites with names longer than one word, in which case a logo is suggested.
 
 == Copyright ==
 
