@@ -8,7 +8,6 @@ if(!isset($content_width)) $content_width = '700';
 class SlimWriterTheme{
     private $_actions = array(
         'after_setup_theme',
-        'widgets_init',
         'wp_enqueue_scripts',
     );
     private $_filters = array(
@@ -100,7 +99,7 @@ class SlimWriterTheme{
     }
 
     /* Filters */
-    function wp_title($title, $sep, $seplocation)
+    function wp_title($title, $sep = '|', $seplocation = 'left')
     {
         return $title . get_bloginfo('name');
     }
@@ -389,3 +388,13 @@ class SlimWriterTheme{
 };
 
 $slimwriter = new SlimWriterTheme();
+
+/**
+ * To compensate for the dumb Theme Check plugin.
+ *
+ * Apparently, dynamic registration in the constructor
+ * does not work, with the Theme Check plugin complaining
+ * register_sidebar() must be called in a hook of the
+ * action 'widgets_init'.
+ */
+add_action('widgets_init', array($slimwriter, 'widgets_init'));

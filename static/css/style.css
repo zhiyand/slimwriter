@@ -42,6 +42,8 @@ h6 {
   /* 16 x 0.75  = 12 */ }
 
 pre {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
   border-radius: 5px;
   white-space: pre;
   font-family: monospace;
@@ -190,7 +192,11 @@ div.entry .featured {
   padding: .5em 1em;
   margin: .5em 0;
   background: #f5f5c5;
+  -moz-box-shadow: inset 0 -1px 3px #ccc;
+  -webkit-box-shadow: inset 0 -1px 3px #ccc;
   box-shadow: inset 0 -1px 3px #ccc;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
   border-radius: 5px; }
 
 div.entry img {
@@ -343,17 +349,12 @@ nav.main ul li ul {
   right: 240px; }
 
 #wrap.animating {
-  -webkit-transition: -webkit-transform .25s ease-in-out;
-  transition: -webkit-transform .25s ease-in-out;
-  transition: transform .25s ease-in-out;
-  transition: transform .25s ease-in-out, -webkit-transform .25s ease-in-out; }
+  transition: transform .25s ease-in-out; }
 
 #wrap.animating.left {
-  -webkit-transform: translate3d(-240px, 0, 0);
   transform: translate3d(-240px, 0, 0); }
 
 #wrap.animating.right {
-  -webkit-transform: translate3d(240px, 0, 0);
   transform: translate3d(240px, 0, 0); }
 
 .pager a {
@@ -471,26 +472,31 @@ aside .half img {
 @media screen and (min-width: 700px) {
   #wrap {
     width: 700px; }
+
   #nav nav {
     width: 700px; } }
-
 @media screen and (max-width: 400px) {
   #comments ol li .vcard {
     float: none; }
+
   #comments ol li .text {
     padding-left: 0; }
+
   #btn-mobile-menu-toggle {
     display: block; }
+
   #nav {
     display: none; }
+
   .concavebox {
     border-radius: 0; }
+
   .hentry {
     margin-bottom: 0;
     border-bottom: 1px solid #eee; }
+
   .post .featured-img img {
     border-radius: 0; } }
-
 /* Text meant only for screen readers. */
 .screen-reader-text {
   clip: rect(1px, 1px, 1px, 1px);
